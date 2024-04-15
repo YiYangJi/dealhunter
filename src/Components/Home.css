@@ -1,0 +1,13 @@
+body {
+  background-color: rgb(56, 56, 56);
+}
+
+.card-img-hover:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+  overflow: hidden;
+}
+
+.card-hover {
+  overflow: hidden;
+}

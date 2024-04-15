@@ -1,0 +1,17 @@
+.navbar_color {
+    background-color: #712cf9;
+}
+
+.header__searchbtn--orange{
+    background-color: orange;
+    color: black;
+    text-decoration: none;
+    border: 0;
+}
+
+/* a{text-decoration: none !important;} */
+
+.header__searchbtn--orange:hover{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+}
