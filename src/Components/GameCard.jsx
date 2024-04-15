@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react";
-import { searchGameInfo, searchGameTitle } from "../Services/file";
+import { searchGame, searchGameInfo } from "../Services/file";
 
 export default function GameCard({ game }) {
   const [image, setImage] = useState(null);
 
-  console.log(game);
-
   useEffect(() => {
     const fetchImage = async () => {
-      const titleResult = await searchGameTitle(game.title);
-      if (titleResult && titleResult.length > 0) {
-        const infoResult = await searchGameInfo(titleResult[0].id);
-        setImage(infoResult.assets.banner600);
+      const titleResults = await searchGame(game.title);
+
+      let gameResult = [];
+
+      if (titleResults.results[0]) {
+        gameResult.push(titleResults.results[0]);
       }
+
+      setImage(gameResult[0].background_image);
     };
 
     fetchImage();
   }, []);
+
+  console.log(image);
 
   return (
     <div className="card card-hover border-0">
@@ -31,7 +35,3 @@ export default function GameCard({ game }) {
     </div>
   );
 }
-
-// COMO LOS NOMBRES DE LOS JUEGOS SON DIFERENTES EN LAS 2 APIS, EL NOMBRE DEL JUEGO
-// DE CHEAPSHARK LO OBTENEMOS Y LO TENEMOS QUE PASAR A MINSUCULAS CON
-//GUIONES PARA QUE COINCIDA CON EL SLUG DE LA APUI DE ISTHEREANYDEAL

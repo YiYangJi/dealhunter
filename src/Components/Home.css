@@ -11,3 +11,7 @@ body {
 .card-hover {
   overflow: hidden;
 }
+
+img-width {
+  max-width: 232px;
+}

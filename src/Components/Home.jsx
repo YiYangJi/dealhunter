@@ -13,7 +13,6 @@ export default function Home({ setGameName }) {
 
     const data = [];
     response.forEach((res) => {
-      console.log(res);
       data.push(res);
     });
 
@@ -27,8 +26,10 @@ export default function Home({ setGameName }) {
   }, []);
 
   return (
-    <div className="pt-5">
-      <ListCards games={games} />
-    </div>
+    <>
+      <div className="pt-5">
+        <ListCards games={games} />
+      </div>
+    </>
   );
 }
