@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { searchGame, searchGameInfo } from "../Services/file";
+import { searchGame } from "../Services/file";
+import "./GameCard.css";
 
 export default function GameCard({ game }) {
   const [image, setImage] = useState(null);
@@ -23,15 +24,18 @@ export default function GameCard({ game }) {
   console.log(image);
 
   return (
-    <div className="card card-hover border-0">
-      <a href={`https://www.cheapshark.com/redirect?dealID=${game.dealID}`} className="text-decoration-none">
-        {image && <img className="card-img-top card-img-hover" src={image} alt="Title" />}
-      </a>
-      <div className="card-body bg-dark text-light rounded-bottom">
-        <h4 className="card-title">{game.title}</h4>
-        <p className="card-text">{game.salePrice}€</p>
-        <p>{game.ID}</p>
+    <a href={`https://www.cheapshark.com/redirect?dealID=${game.dealID}`} className="text-decoration-none">
+      <div class="card position-relative border-0">
+        <img class="card-img-top img-fluid object-fit-cover h-100 rounded" src={image} alt="Title" />
+        <div class="details text-white w-100 position-absolute bottom-0 overflow-hidden p-2 rounded-bottom">
+          <p class="fw-bold">{game.title}</p>
+          <p class="mt-2">
+            {game.salePrice}€
+            <br />
+            <i>California, USA</i>
+          </p>
+        </div>
       </div>
-    </div>
+    </a>
   );
 }

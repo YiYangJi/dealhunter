@@ -8,7 +8,7 @@ export default function ListCards({ games }) {
   return (
     <div className="row m-5">
       {uniqueGames.map((game) => (
-        <div className="col-3" key={game.gameID}>
+        <div className="col-3 mb-3" key={game.gameID}>
           <GameCard game={game} />
         </div>
       ))}
