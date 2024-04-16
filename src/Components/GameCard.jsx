@@ -28,7 +28,7 @@ export default function GameCard({ game }) {
       <div class="card position-relative border-0">
         <img class="card-img-top img-fluid object-fit-cover h-100 rounded" src={image} alt="Title" />
         <div class="details text-white w-100 position-absolute bottom-0 overflow-hidden p-2 rounded-bottom">
-          <p class="fw-bold">{game.title}</p>
+          <p class="fw-bold lh-lg">{game.title}</p>
           <p class="mt-2">
             {game.salePrice}€
             <br />

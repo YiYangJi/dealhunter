@@ -5,11 +5,11 @@
 
 .details {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   height: 2.6em;
   transition: height .5s ease-in-out;
 }
 
 .card:hover>.details {
-  height: 8em;
+  height: 10em;
 }
