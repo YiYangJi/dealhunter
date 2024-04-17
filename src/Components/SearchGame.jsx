@@ -11,16 +11,22 @@ export default function SearchGame() {
 
   console.log(nameGame);
 
-  const data = [];
+  const fetchGames = async () => {
+    const promises = [];
+    promises.push(getListGames(nameGame));
+    const response = await Promise.all(promises);
+
+    const data = [];
+    response.forEach((res) => {
+      data.push(res);
+    });
+
+    setRelatedGames(data);
+  };
 
   useEffect(() => {
-    getListGames(nameGame).then((res) => {
-      res.forEach((game) => {
-        data.push(game);
-      });
-    });
-    setRelatedGames(data);
-  }, []);
+    fetchGames();
+  }, [nameGame]);
 
   return <ListCards games={relatedGames} />;
 }

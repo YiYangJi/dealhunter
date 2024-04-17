@@ -1,6 +1,7 @@
 const freeGames = "https://www.cheapshark.com/api/1.0/deals?upperPrice=0";
 const getListOfGames = "https://www.cheapshark.com/api/1.0/games";
 const topDeals = "https://www.cheapshark.com/api/1.0/deals?upperPrice=15&pageSize=10";
+const infoGame = "https://www.cheapshark.com/api/1.0/games";
 
 export async function getFreeGames() {
   const urlFetch = freeGames;
@@ -18,6 +19,13 @@ export async function getListGames(name) {
 
 export async function getTopDeals() {
   const urlFetch = topDeals;
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+export async function getInfoGame(id) {
+  const urlFetch = infoGame + `?id=${id}`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;

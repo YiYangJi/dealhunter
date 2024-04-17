@@ -3,7 +3,7 @@ import { getFreeGames, getListGames, getTopDeals } from "../Services/file";
 import "./Home.css";
 import ListCards from "./ListCards";
 
-export default function Home({ setGameName }) {
+export default function Home() {
   const [games, setGames] = useState([]);
 
   const fetchTopDeals = async () => {
@@ -17,8 +17,6 @@ export default function Home({ setGameName }) {
     });
 
     setGames(data);
-
-    console.log(games);
   };
 
   useEffect(() => {
