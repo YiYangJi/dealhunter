@@ -5,6 +5,8 @@ import "./GameCard.css";
 export default function GameCard({ game }) {
   const [image, setImage] = useState(null);
 
+  console.log("not working");
+
   useEffect(() => {
     const fetchImage = async () => {
       const titleResults = await searchGame(game.title);

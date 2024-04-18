@@ -23,11 +23,5 @@ export default function Home() {
     fetchTopDeals();
   }, []);
 
-  return (
-    <>
-      <div className="pt-5">
-        <ListCards games={games} />
-      </div>
-    </>
-  );
+  return <ListCards games={games} />;
 }

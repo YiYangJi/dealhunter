@@ -8,8 +8,10 @@ export default function ListCards({ games }) {
       ? games[0].filter((game, index, self) => index === self.findIndex((t) => t.gameID === game.gameID))
       : [];
 
+  console.log(uniqueGames);
+
   return (
-    <div className="row m-5">
+    <div className="row m-5 pt-5 justify-content-center">
       {uniqueGames.map((game) => {
         return (
           <div className="col-xl-3 col-lg-4 col-md-6 col-12 mb-4" key={game.gameID}>

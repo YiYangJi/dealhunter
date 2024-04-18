@@ -9,8 +9,6 @@ export default function SearchGame() {
 
   const [relatedGames, setRelatedGames] = useState([]);
 
-  console.log(nameGame);
-
   const fetchGames = async () => {
     const promises = [];
     promises.push(getListGames(nameGame));
