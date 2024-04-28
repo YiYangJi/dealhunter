@@ -19,6 +19,7 @@ export default function SearchInput() {
       setMensajeError("");
 
       navigate(`/searchGame/${nameGame}`);
+      e.target.form.submit();
     }
   };
 

@@ -8,7 +8,7 @@ import SearchInput from "./SearchInput";
 export default function Header() {
   return (
     <header className="pt-5">
-      <nav className="navbar navbar-dark bg-dark fixed-top">
+      <nav className="navbar navbar-dark bg-black fixed-top">
         <div className="container-fluid">
           <Link to="/">
             <img src="/logo_DealHunter-nobg.png" alt="" height="80" />
@@ -42,12 +42,12 @@ export default function Header() {
                 </li>
                 <li className="nav-item">
                   <Link to="/searchByName" className="text-decoration-none nav-link text-light">
-                    Search a meal by name
+                    Search
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/searchByIngredient" className="text-decoration-none nav-link text-light">
-                    Search a meal by ingredient
+                    Search
                   </Link>
                 </li>
               </ul>

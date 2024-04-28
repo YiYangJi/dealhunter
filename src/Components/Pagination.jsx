@@ -15,3 +15,5 @@ export default function Pagination({ currentPage, totalCards, setPage }) {
     </div>
   );
 }
+
+// NO FUNCIONA

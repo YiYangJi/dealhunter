@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Home";
 import Header from "./Components/Header";
 import SearchGame from "./Components/SearchGame";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -29,6 +30,11 @@ function App() {
         informará al usuario de que la página no se ha encontrado */}
         <Route path="*" element={<h1>Lo sentimos!! no hemos encontrado la ruta que has especificado</h1>} />
       </Routes>
+
+      <footer class="text-center text-white bg-black">
+        {/* Incluimos el componente Header */}
+        <Footer />
+      </footer>
     </div>
   );
 }

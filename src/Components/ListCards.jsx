@@ -11,10 +11,10 @@ export default function ListCards({ games }) {
   console.log(uniqueGames);
 
   return (
-    <div className="row m-5 pt-5 justify-content-center">
+    <div className="carousel-inner p-3">
       {uniqueGames.map((game) => {
         return (
-          <div className="col-xl-3 col-lg-4 col-md-6 col-12 mb-4" key={game.gameID}>
+          <div className="carousel-item me-0" key={game.gameID}>
             {game.title !== undefined ? <GameCard game={game} /> : <SearchGameCard game={game} />}
           </div>
         );
