@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { getFreeGames, getListGames, getTopDeals } from "../Services/file";
+import { getBestDeals, getListDeals, getTopRated } from "../Services/file";
 import "./Home.css";
 import ListCards from "./ListCards";
 import Carousel from "./Carousel";
+import BestDeals from "./BestDeals";
+import TopRated from "./NewDeals";
 
 export default function Home() {
   const [games, setGames] = useState([]);
+  const [bestDeals, setBestDeals] = useState([]);
+  const [newDeals, setnewDeals] = useState([]);
 
-  const fetchTopDeals = async () => {
+  const fetchListDeals = async () => {
     const promises = [];
-    promises.push(getTopDeals());
+    promises.push(getListDeals());
     const response = await Promise.all(promises);
 
     const data = [];
@@ -20,8 +24,38 @@ export default function Home() {
     setGames(data);
   };
 
+  const fetchBestDeals = async () => {
+    const promises = [];
+    promises.push(getBestDeals());
+    const response = await Promise.all(promises);
+
+    const data = [];
+    response.forEach((res) => {
+      data.push(res);
+    });
+
+    setBestDeals(data);
+  };
+
+  const fetchTopRated = async () => {
+    const promises = [];
+    promises.push(getTopRated());
+    const response = await Promise.all(promises);
+
+    const data = [];
+    response.forEach((res) => {
+      data.push(res);
+    });
+
+    setnewDeals(data);
+  };
+
   useEffect(() => {
-    fetchTopDeals();
+    fetchListDeals();
+    fetchBestDeals();
+    fetchTopRated();
+
+    console.log(bestDeals);
   }, []);
 
   return (
@@ -47,7 +81,7 @@ export default function Home() {
 
       <div className="container my-5">
         <div className="d-flex align-items-center">
-          <h3 className="text-white">New deals</h3>
+          <h3 className="text-white">Interesting titles</h3>
           <a href="#" className="text-decoration-none text-white ms-4">
             See all
             <i className="fa-solid fa-caret-right"></i>
@@ -59,65 +93,11 @@ export default function Home() {
         <div className="row justify-content-center mt-5">
           <div className="col-lg-5 col-12 mb-5 deal-section">
             <h3 className="text-white text-center">Best deals</h3>
-            <div className="card bg-black text-light rounded-0 border-bottom mx-auto" style={{ maxWidth: "500px", maxHeight: "45px" }}>
-              <div className="row g-0 align-items-center">
-                <div className="col-3">
-                  <img
-                    src="https://cdn.cloudflare.steamstatic.com/steam/apps/1139280/capsule_sm_120.jpg?t=1706115924"
-                    className="img-fluid"
-                    alt="Card title"
-                  />
-                </div>
-                <div className="col-9">
-                  <div className="row justify-content-between align-items-center">
-                    <div className="col-md-9 col-8">
-                      <p
-                        className="card-text text-truncate m-0"
-                        data-bs-toggle="tooltip"
-                        title="Neverwinter Nights: Enhanced Edition Digital Deluxe Edition">
-                        Neverwinter Nights: Enhanced Edition Digital Deluxe Edition
-                      </p>
-                    </div>
-                    <div className="col-md-3 col-4">
-                      <p className="m-0">
-                        <span className="fw-bold fs-5">0.22€</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* <BestDeals bestDeals={bestDeals} /> */}
           </div>
           <div className="col-lg-5 col-12 deal-section">
-            <h3 className="text-white text-center">Top rated</h3>
-            <div className="card bg-black text-light rounded-0 border-bottom mx-auto" style={{ maxWidth: "500px", maxHeight: "45px" }}>
-              <div className="row g-0 align-items-center">
-                <div className="col-3">
-                  <img
-                    src="https://cdn.cloudflare.steamstatic.com/steam/apps/1139280/capsule_sm_120.jpg?t=1706115924"
-                    className="img-fluid"
-                    alt="Card title"
-                  />
-                </div>
-                <div className="col-9">
-                  <div className="row justify-content-between align-items-center">
-                    <div className="col-md-9 col-8">
-                      <p
-                        className="card-text text-truncate m-0"
-                        data-bs-toggle="tooltip"
-                        title="Neverwinter Nights: Enhanced Edition Digital Deluxe Edition">
-                        Neverwinter Nights: Enhanced Edition Digital Deluxe Edition
-                      </p>
-                    </div>
-                    <div className="col-md-3 col-4">
-                      <p className="m-0">
-                        <span className="fw-bold fs-5">0.22€</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h3 className="text-white text-center">New deals</h3>
+            {/* <TopRated newDeals={newDeals} /> */}
           </div>
         </div>
       </div>
