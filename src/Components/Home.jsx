@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getBestDeals, getListDeals, getTopRated } from "../Services/file";
 import "./Home.css";
 import ListCards from "./ListCards";
-import Carousel from "./Carousel";
+import CarouselDeals from "./CarouselDeals";
 import BestDeals from "./BestDeals";
 import TopRated from "./NewDeals";
+
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import GameCard from "./GameCard";
 
 export default function Home() {
   const [games, setGames] = useState([]);
@@ -58,6 +62,11 @@ export default function Home() {
     console.log(bestDeals);
   }, []);
 
+  let uniqueGames =
+    games && games[0] && !games[0].error
+      ? games[0].filter((game, index, self) => index === self.findIndex((t) => t.gameID === game.gameID))
+      : [];
+
   return (
     <>
       <div className="bg-presentation-overlay pt-4">
@@ -87,9 +96,64 @@ export default function Home() {
             <i className="fa-solid fa-caret-right"></i>
           </a>
         </div>
-
-        <Carousel games={games} />
-
+        <Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="container"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 1024,
+              },
+              items: 3,
+              partialVisibilityGutter: 40,
+            },
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0,
+              },
+              items: 1,
+              partialVisibilityGutter: 30,
+            },
+            tablet: {
+              breakpoint: {
+                max: 1024,
+                min: 464,
+              },
+              items: 2,
+              partialVisibilityGutter: 30,
+            },
+          }}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          sliderClass=""
+          slidesToSlide={1}
+          swipeable>
+          {uniqueGames &&
+            uniqueGames.map((game) => {
+              return <GameCard game={game} />;
+            })}
+        </Carousel>
+        ;{/* <CarouselDeals games={games} /> */}
         <div className="row justify-content-center mt-5">
           <div className="col-lg-5 col-12 mb-5 deal-section">
             <h3 className="text-white text-center">Best deals</h3>

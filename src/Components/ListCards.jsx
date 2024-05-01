@@ -11,14 +11,11 @@ export default function ListCards({ games }) {
   console.log(uniqueGames);
 
   return (
-    <div className="carousel-inner p-3">
+    <div className="row">
       {uniqueGames.map((game) => {
-        return (
-          <div className="carousel-item me-0" key={game.gameID}>
-            {game.title !== undefined ? <GameCard game={game} /> : <SearchGameCard game={game} />}
-          </div>
-        );
+        return game.title !== undefined ? <GameCard game={game} key={game.gameID} /> : <SearchGameCard game={game} key={game.gameID} />;
       })}
+      ;
     </div>
   );
 }
