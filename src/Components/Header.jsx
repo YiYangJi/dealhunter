@@ -2,60 +2,72 @@ import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput";
+
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 
 // Componente que se encarga de renderizar los botones de busqueda de las comidas
 export default function Header() {
   return (
-    <header className="pt-5">
-      <nav className="navbar navbar-dark bg-black fixed-top">
-        <div className="container-fluid">
-          <Link to="/">
-            <img src="/logo_DealHunter-nobg.png" alt="" height="80" />
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasDarkNavbar"
-            aria-controls="offcanvasDarkNavbar"
-            aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="offcanvas offcanvas-end text-bg-dark"
-            tabIndex="-1"
-            id="offcanvasDarkNavbar"
-            aria-labelledby="offcanvasDarkNavbarLabel">
-            <div className="offcanvas-header">
-              <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">
-                DealHunter
-              </h5>
-              <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div className="offcanvas-body">
-              <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li className="nav-item">
-                  <Link to="/" className="text-decoration-none nav-link text-light">
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/searchByName" className="text-decoration-none nav-link text-light">
-                    Search
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/searchByIngredient" className="text-decoration-none nav-link text-light">
-                    Search
-                  </Link>
-                </li>
-              </ul>
+    <header className="mb-5">
+      <Navbar expand="md" className="bg-body-tertiary p-0" bg="dark" data-bs-theme="dark" fixed="top">
+        <Container fluid className="container">
+          <Navbar.Brand>
+            <Link to="/">
+              <img src="/logo_DealHunter-nobg.png" alt="" height="80" />
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-xl`} />
+          <Navbar.Offcanvas
+            id={`offcanvasNavbar-expand-xl`}
+            aria-labelledby={`offcanvasNavbarLabel-expand-xl`}
+            placement="end"
+            bg="dark"
+            data-bs-theme="dark">
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-xl`}>DealHunter</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center">
+                <Link to="/" className="text-decoration-none text-white me-3 fs-5 fw-medium">
+                  Home
+                </Link>
+                <NavDropdown
+                  title={<span className="text-white fs-5 fw-medium">Games</span>}
+                  id={`offcanvasNavbarDropdown-expand-xl`}
+                  className="me-3">
+                  <NavDropdown.Item>
+                    <Link to="/interesting titles" className="text-decoration-none text-white me-3 fs-6 fw-medium">
+                      Interesting titles
+                    </Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
+                    <Link to="/best deals" className="text-decoration-none text-white me-3 fs-6 fw-medium">
+                      Best Deals
+                    </Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
+                    <Link to="/new deals" className="text-decoration-none text-white me-3 fs-6 fw-medium">
+                      New Deals
+                    </Link>
+                  </NavDropdown.Item>
+                </NavDropdown>
+                <Link to="/about" className="text-decoration-none text-white me-3 fs-5 fw-medium">
+                  About
+                </Link>
+                <Link to="/contact" className="text-decoration-none text-white me-3 fs-5 fw-medium">
+                  Contact
+                </Link>
+              </Nav>
               <SearchInput />
-            </div>
-          </div>
-        </div>
-      </nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
     </header>
   );
 }

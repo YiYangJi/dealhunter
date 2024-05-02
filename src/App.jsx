@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Home";
 import Header from "./Components/Header";
 import SearchGame from "./Components/SearchGame";
 import Footer from "./Components/Footer";
 
+import "./App.css";
+
 function App() {
   return (
     <div className="App">
-      <header>
-        {/* Incluimos el componente Header */}
-        <Header />
-      </header>
+      {/* Incluimos el componente Header */}
+      <Header />
       <Routes>
         {/* La ruta raiz será el componente Home */}
         <Route path="/" element={<Home />} />
@@ -31,7 +31,7 @@ function App() {
         <Route path="*" element={<h1>Lo sentimos!! no hemos encontrado la ruta que has especificado</h1>} />
       </Routes>
 
-      <footer class="text-center text-white bg-black">
+      <footer className="text-center text-white bg-black">
         {/* Incluimos el componente Header */}
         <Footer />
       </footer>

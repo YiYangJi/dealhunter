@@ -21,10 +21,6 @@
   min-height: 400px;
 }
 
-.deal-section .card:last-child {
-  border-bottom: none !important;
-}
-
 .fa-bounce-hover {
   transition: transform 0.3s ease;
 }

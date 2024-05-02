@@ -55,7 +55,7 @@ export default function SearchGame() {
       <div className="mb-4">
         {/* Botón de alternar para el panel lateral de filtro */}
         <button className="btn btn-secondary toggle-btn" onClick={togglePanel}>
-          <i class="fas fa-filter me-2"></i>Filter
+          <i className="fas fa-filter me-2"></i>Filter
         </button>
         {/* Panel lateral de filtro */}
         <div ref={panelRef} className={`side-panel ${showPanel ? "show" : ""} bg-black text-white`}>

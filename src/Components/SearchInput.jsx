@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchInput() {
   const [nameGame, setNameGame] = useState("");
@@ -8,7 +10,7 @@ export default function SearchInput() {
   const navigate = useNavigate();
 
   const handleGameName = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
 
     // En caso de que el campo esté vacio:
     if (!nameGame) {
@@ -19,26 +21,25 @@ export default function SearchInput() {
       setMensajeError("");
 
       navigate(`/searchGame/${nameGame}`);
-      e.target.form.submit();
+      // No necesitas llamar a e.target.form.submit()
     }
   };
 
   return (
     <>
-      <form className="d-flex mt-3" role="search">
-        <input
-          className="form-control me-2"
+      <Form className="d-flex" onSubmit={handleGameName}>
+        <Form.Control
           type="search"
           placeholder="Search"
+          className="me-2"
           aria-label="Search"
           onKeyUp={(e) => setNameGame(e.target.value)}
         />
-        <Link to="/searchByName">
-          <button className="btn btn-success" type="submit" onClick={handleGameName}>
-            Search
-          </button>
-        </Link>
-      </form>
+        <Button variant="outline-success" type="submit">
+          Search
+        </Button>
+      </Form>
+
       <p className="error-feedback text-danger p-0 mb-0 text-center">{mensajeError}</p>
     </>
   );

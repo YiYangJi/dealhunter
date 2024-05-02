@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="#!" className="text-white">
-                  About us
+                  About
                 </a>
               </h6>
             </div>
@@ -25,7 +25,7 @@ export default function Footer() {
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="#!" className="text-white">
-                  Best deals
+                  Interesting titles
                 </a>
               </h6>
             </div>
@@ -33,7 +33,7 @@ export default function Footer() {
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="#!" className="text-white">
-                  Top Rated
+                  Best deals
                 </a>
               </h6>
             </div>
@@ -77,6 +77,8 @@ export default function Footer() {
           </a>
         </section>
       </div>
+
+      <hr className="my-2" />
 
       <div className="text-center p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
         © 2024 YiYang Ji (Johnny)
