@@ -3,6 +3,7 @@ const listOfGames = "https://www.cheapshark.com/api/1.0/games";
 const listDeals = "https://www.cheapshark.com/api/1.0/deals?upperPrice=15&pageSize=10";
 const bestDeals = "https://www.cheapshark.com/api/1.0/deals?sortBy=Savings&pageSize=7";
 const topRatedGames = "https://www.cheapshark.com/api/1.0/deals?sortBy=Recent&pageSize=7";
+const ExactGame = "https://www.cheapshark.com/api/1.0/games?exact=1";
 
 export async function getFreeGames() {
   const urlFetch = freeGames;
@@ -46,12 +47,19 @@ export async function getTopRated() {
   return json;
 }
 
+export async function getExactGame(title) {
+  const urlFetch = listOfGames + `?title=${title}`;
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
 //////////////////////////////////////////////////////////////////////////////////
-const apiKey = process.env.REACT_APP_ISTHEREANYDEAL_API_KEY;
+// const apiKey = process.env.REACT_APP_ISTHEREANYDEAL_API_KEY;
 
 // const searchGames = `https://api.isthereanydeal.com/games/search/v1?key=${apiKey}`;
 
-const gameInfo = `https://api.isthereanydeal.com/games/info/v2?key=${apiKey}`;
+// const gameInfo = `https://api.isthereanydeal.com/games/info/v2?key=${apiKey}`;
 
 // export async function searchGameTitle(name) {
 //   const urlFetch = searchGames + `&title=${name}`;
@@ -60,20 +68,27 @@ const gameInfo = `https://api.isthereanydeal.com/games/info/v2?key=${apiKey}`;
 //   return json;
 // }
 
-export async function searchGameInfo(id) {
-  const urlFetch = gameInfo + `&id=${id}`;
+// export async function searchGameInfo(id) {
+//   const urlFetch = gameInfo + `&id=${id}`;
+//   const response = await fetch(urlFetch);
+//   const json = await response.json();
+//   return json;
+// }
+
+//////////////////////////////////////////////////////////////////////////////////
+const apiRAWGKey = process.env.REACT_APP_RAWG_API_KEY;
+
+const searchGames = `https://api.rawg.io/api/games`;
+
+export async function searchGame(name) {
+  const urlFetch = searchGames + `?key=${apiRAWGKey}&search=${name}&page_size=1`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
 }
 
-//////////////////////////////////////////////////////////////////////////////////
-const apiRAWGKey = process.env.REACT_APP_RAWG_API_KEY;
-
-const searchGames = `https://api.rawg.io/api/games?key=${apiRAWGKey}`;
-
-export async function searchGame(name) {
-  const urlFetch = searchGames + `&search=${name}&page_size=1`;
+export async function searchGameInfo(id) {
+  const urlFetch = searchGames + `/${id}?key=${apiRAWGKey}`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;

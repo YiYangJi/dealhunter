@@ -4,6 +4,7 @@ import Home from "./Components/Home";
 import Header from "./Components/Header";
 import SearchGame from "./Components/SearchGame";
 import Footer from "./Components/Footer";
+import GameDetails from "./Components/GameDetails";
 
 import "./App.css";
 
@@ -20,7 +21,7 @@ function App() {
         {/* La ruta /searchByIngredient incluirá el componente SearchByIngredient */}
         <Route path="/searchByIngredient" element={<Home />} />
         {/* Esta ruta /meal/id incluirá el componente MealDetails con su id corresponiendte */}
-        <Route path="/meal/:id" element={<Home />} />
+        <Route path="/game/:id" element={<GameDetails />} />
         {/* La ruta /ingredient-recipes/ingredient incluirá el componente
         IngredientRecipesPage con el resultado de las comidas que contienen ese ingrediente */}
         <Route path="/ingredient-recipes/:ingredient" element={<Home />} />

@@ -9,6 +9,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import GameCard from "./GameCard";
 import NewDeals from "./NewDeals";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [games, setGames] = useState([]);
@@ -91,10 +92,10 @@ export default function Home() {
       <div className="container my-5">
         <div className="d-flex align-items-center">
           <h3 className="text-white">Interesting titles</h3>
-          <a href="#" className="text-decoration-none text-white ms-4">
+          <Link to="/interesting titles" className="text-decoration-none text-white ms-4">
             See more
             <i className="fa-solid fa-caret-right ms-2"></i>
-          </a>
+          </Link>
         </div>
         <Carousel
           additionalTransfrom={0}
@@ -157,20 +158,20 @@ export default function Home() {
           <div className="col-lg-5 col-md-12 mb-5 deal-section">
             <div className="d-flex align-items-center">
               <h3 className="text-white text-center">Best deals</h3>
-              <a href="#" className="text-decoration-none text-white ms-4">
+              <Link to="/best deals" className="text-decoration-none text-white ms-4">
                 See more
                 <i className="fa-solid fa-caret-right ms-2"></i>
-              </a>
+              </Link>
             </div>
             <BestDeals bestDeals={bestDeals} />
           </div>
           <div className="col-lg-5 col-12 deal-section">
             <div className="d-flex align-items-center">
               <h3 className="text-white text-center">New deals</h3>
-              <a href="#" className="text-decoration-none text-white ms-4">
+              <Link to="/new deals" className="text-decoration-none text-white ms-4">
                 See more
                 <i className="fa-solid fa-caret-right ms-2"></i>
-              </a>
+              </Link>
             </div>
             <NewDeals newDeals={newDeals} />
           </div>
