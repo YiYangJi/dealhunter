@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+.gameDetails__bg-presentation-overlay {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 450px;
+}
