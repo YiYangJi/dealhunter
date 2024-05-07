@@ -3,7 +3,7 @@
 }
 
 .bg-presentation-overlay {
-  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/fondo.png");
+  background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/fondo.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -13,7 +13,7 @@
 
 
 .bg-stores-overlay {
-  background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/fondo2.png");
+  background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/fondo2.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;

@@ -51,7 +51,7 @@ export default function SearchGame() {
 
   return (
     <div className="container mt-5 pt-5">
-      <h2 className="text-white mb-4">Search results for "{nameGame}"</h2>
+      <h2 className="text-white mb-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
       <div className="mb-4">
         {/* Botón de alternar para el panel lateral de filtro */}
         <button className="btn btn-secondary toggle-btn" onClick={togglePanel}>

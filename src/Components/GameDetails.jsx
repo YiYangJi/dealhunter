@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import { storesArray } from "../Services/script";
+
+import "./GameDetails.css";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { getInfoGame, searchGame, searchGameInfo } from "../Services/file";
 
@@ -45,7 +49,7 @@ import Tabs from "react-bootstrap/Tabs";
 //         <div
 //           className="gameDetails__bg-presentation-overlay d-flex align-items-center justify-content-center"
 //           style={{
-//             background: moreGameData
+//             backgroundImage: moreGameData
 //               ? `linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('${moreGameData.background_image}')`
 //               : "",
 //             minHeight: "450px",
@@ -112,13 +116,17 @@ export default function GameDetails() {
     fetchGameDetails();
   }, []);
 
+  function findStoreById(storeId) {
+    return storesArray.find((store) => store.storeID === storeId);
+  }
+
   return (
     <>
       <div className="pt-4">
         <div
           className="gameDetails__bg-presentation-overlay d-flex align-items-center justify-content-center"
           style={{
-            background: moreGameData
+            backgroundImage: moreGameData
               ? `linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('${moreGameData.background_image}')`
               : "",
             minHeight: "450px",
@@ -138,7 +146,7 @@ export default function GameDetails() {
             <Tab eventKey="offers" title="Offers" className="text-white">
               <div className="d-flex flex-column align-items-center mt-2">
                 <div className="d-flex align-items-center justify-content-center rounded bg-secondary" style={{ width: "30%" }}>
-                  <i class="fa-solid fa-wand-magic-sparkles me-4"></i>
+                  <i className="fa-solid fa-wand-magic-sparkles me-4"></i>
                   <div>
                     HISTORICAL LOW <br />
                     <span className="fs-3 fw-medium me-2">{gameData ? gameData.cheapestPriceEver.price : "Loading..."}€</span>
@@ -151,27 +159,34 @@ export default function GameDetails() {
               <div>
                 <h3 className="w-25 mt-5 border-bottom pb-2">Offers</h3>
                 <div className="row">
-                  {console.log(gameData.deals)}
                   {gameData &&
                     gameData.deals.map((deal) => (
-                      <div className="card newDeals__card bg-black text-light rounded-0 mx-auto">
+                      <div
+                        className="card gameDetails__card bg-black text-light rounded-0 mx-auto p-0 d-flex justify-content-center mb-1"
+                        key={deal.dealID}>
                         <div className="row g-0 align-items-center">
-                          <div className="col-3">
-                            <img
-                              src={deal.storeID}
-                              className="img-fluid"
-                              alt="Card title"
-                              style={{ height: "42px", width: "100%", objectFit: "cover" }}
-                            />
+                          <div className="col-2">
+                            <div className="w-75 mx-auto">
+                              <img src={`/img/stores/${findStoreById(deal.storeID).banner}`} alt="Store Banner" className="img-fluid" />
+                            </div>
                           </div>
                           <div className="col-9">
                             <div className="row justify-content-between align-items-center">
                               <div className="col-xl-9 col-lg-8 col-md-9 col-sm-9 col-8">
-                                <p className="card-text text-truncate m-0 ms-2" title=""></p>
+                                <p className="card-text text-truncate m-0 ms-2" title={gameData.info.title}>
+                                  {gameData.info.title}
+                                </p>
                               </div>
                               <div className="col-xl-3 col-lg-4 col-md-3 col-sm-3 col-4">
-                                <p className="m-0">
-                                  <span className="fw-bold fs-5">{deal.price}€</span>
+                                <p className="m-0 text-end">
+                                  {deal.retailPrice === deal.price ? (
+                                    <span className="fw-bold fs-5">{deal.price}€</span>
+                                  ) : (
+                                    <>
+                                      <span className="text-decoration-line-through text-secondary">{deal.retailPrice}€</span>
+                                      <span className="fw-bold fs-5">{deal.price}€</span>
+                                    </>
+                                  )}
                                 </p>
                               </div>
                             </div>
