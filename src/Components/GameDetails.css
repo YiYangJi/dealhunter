@@ -10,6 +10,10 @@
 }
 
 
-.gameDetails__card {
+.gameDetails__card--offers {
   height: 15vh;
+}
+
+.gameDetails__card {
+  top: 6em;
 }
