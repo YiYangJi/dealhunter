@@ -7,6 +7,11 @@ import Footer from "./Components/Footer";
 import GameDetails from "./Components/GameDetails";
 
 import "./App.css";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import InterestingTitles from "./Components/InterestingTitles";
+import BestDeals from "./Components/BestDeals";
+import NewDeals from "./Components/NewDeals";
 
 function App() {
   return (
@@ -17,9 +22,12 @@ function App() {
         {/* La ruta raiz será el componente Home */}
         <Route path="/" element={<Home />} />
         {/* La ruta /searchByName incluirá el componente SearchByName */}
-        <Route path="/searchByName" element={<Home />} />
+        <Route path="/interesting titles" element={<InterestingTitles />} />
         {/* La ruta /searchByIngredient incluirá el componente SearchByIngredient */}
-        <Route path="/searchByIngredient" element={<Home />} />
+        <Route path="/best deals" element={<BestDeals />} />
+        <Route path="/new deals" element={<NewDeals />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         {/* Esta ruta /meal/id incluirá el componente MealDetails con su id corresponiendte */}
         <Route path="/game/:id" element={<GameDetails />} />
         {/* La ruta /ingredient-recipes/ingredient incluirá el componente

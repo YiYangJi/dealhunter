@@ -17,3 +17,34 @@
 .gameDetails__card {
   top: 6em;
 }
+
+.gameDetails__tab--ul li button {
+  color: white;
+}
+
+.gameDetails__tab--ul li button:hover {
+  color: white;
+}
+
+.gameDetails__p--responsive {
+  font-size: 1.2em;
+}
+
+.gameDetails__offerPrice--responsive {
+  font-size: 1em;
+}
+
+.gameDetails__price--responsive {
+  font-size: 1.4em;
+}
+
+
+@media (max-width: 576px) {
+  .gameDetails__p--responsive {
+    font-size: 0.8em;
+  }
+
+  .gameDetails__price--responsive {
+    font-size: 0.9em;
+  }
+}

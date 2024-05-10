@@ -18,12 +18,8 @@ export default function GameCard({ game }) {
         gameResult.push(titleResults.results[0]);
       }
 
-      console.log(dataResult[0]);
-
       setImage(gameResult[0].background_image);
       setInfoGame(dataResult[0]);
-
-      console.log(infoGame);
     };
 
     fetchImage();
