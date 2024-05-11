@@ -220,10 +220,10 @@ export default function Home() {
 
         <div className="container py-5">
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-md-6 mb-4">
+            <div className="col-lg-5 col-sm-6 mb-4">
               <a href="#" className="text-decoration-none">
                 <div className="card bg-dark border-0 text-center text-white">
-                  <i className="fa-brands fa-discord fa-4x fa-bounce-hover pt-3"></i>
+                  <i className="fa-brands fa-discord fa-5x fa-bounce-hover pt-3"></i>
                   <div className="card-body">
                     <h4 className="card-title pb-4">Try our Discord Bot!</h4>
                     <p className="card-text">Invite our bot for games, join the action and enhance your community's experience today!</p>
@@ -231,28 +231,30 @@ export default function Home() {
                 </div>
               </a>
             </div>
-            <div className="col-lg-4 col-md-6 mb-4">
-              <a href="#" className="text-decoration-none">
+            <div className="col-lg-5 col-sm-6 mb-4">
+              <Link to={"/about"} className="text-decoration-none" onClick={() => window.scrollTo(0, 0)}>
                 <div className="card bg-dark border-0 text-center text-white">
-                  <i className="fa-solid fa-address-card fa-4x fa-bounce-hover pt-3"></i>
+                  <i className="fa-solid fa-address-card fa-5x fa-bounce-hover pt-3"></i>
                   <div className="card-body">
                     <h4 className="card-title pb-4">Want to know more?</h4>
                     <p className="card-text">Click here and explore my story, experience, and passions in the world of technology.</p>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
-            <div className="col-lg-4 col-md-6 mb-4">
-              <a href="#" className="text-decoration-none">
-                <div className="card bg-dark border-0 text-center text-white">
-                  <i className="fa-solid fa-file-circle-question fa-4x fa-bounce-hover pt-3"></i>
-                  <div className="card-body">
-                    <h4 className="card-title pb-4">Questions or suggestions?</h4>
-                    <p className="card-text">Feel free to contact or share your feedback and ideas with me!</p>
-                  </div>
-                </div>
-              </a>
-            </div>
+          </div>
+        </div>
+
+        <div className="bg-homeContact-overlay pt-4 d-flex flex-column justify-content-evenly align-items-center text-center text-white">
+          <div className="col-lg-9 col-md-8 col-sm-10 col-10">
+            <h2 className="fw-bold">
+              Questions or suggestions? <br /> Feel free to contact or share your feedback and ideas with me!
+            </h2>
+          </div>
+          <div className="col-8">
+            <Link to={"/contact"}>
+              <button className="btn btn-primary fw-bold">Contact now!</button>
+            </Link>
           </div>
         </div>
       </>

@@ -66,7 +66,7 @@ export default function Footer() {
         </section>
 
         <section className="text-center mb-4">
-          <a href="#" className="text-white me-4">
+          <a href="https://www.facebook.com/login/" className="text-white me-4">
             <i className="fab fa-facebook fa-2x"></i>
           </a>
           <a href="#" className="text-white me-4">
