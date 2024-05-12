@@ -237,7 +237,7 @@ export default function Home() {
                   <i className="fa-solid fa-address-card fa-5x fa-bounce-hover pt-3"></i>
                   <div className="card-body">
                     <h4 className="card-title pb-4">Want to know more?</h4>
-                    <p className="card-text">Click here and explore my story, experience, and passions in the world of technology.</p>
+                    <p className="card-text">Click here and explore our story, experience, and passions in the world of technology.</p>
                   </div>
                 </div>
               </Link>
@@ -248,7 +248,7 @@ export default function Home() {
         <div className="bg-homeContact-overlay pt-4 d-flex flex-column justify-content-evenly align-items-center text-center text-white">
           <div className="col-lg-9 col-md-8 col-sm-10 col-10">
             <h2 className="fw-bold">
-              Questions or suggestions? <br /> Feel free to contact or share your feedback and ideas with me!
+              Questions or suggestions? <br /> Feel free to contact or share your feedback and ideas with us!
             </h2>
           </div>
           <div className="col-8">
