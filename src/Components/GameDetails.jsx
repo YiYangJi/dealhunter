@@ -20,6 +20,8 @@ export default function GameDetails() {
   const [moreGameData, setMoreGameData] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const fetchGameDetails = async () => {
       try {
         const data = await getInfoGame(id);

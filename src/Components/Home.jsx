@@ -19,6 +19,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const fetchListDeals = async () => {
       const promises = [];
       promises.push(getListDeals());
@@ -115,7 +117,7 @@ export default function Home() {
         <div className="container my-5">
           <div className="d-flex align-items-center">
             <h3 className="text-white">Interesting titles</h3>
-            <Link to="/interesting titles" className="text-decoration-none text-white ms-4">
+            <Link to="/interesting titles" className="text-decoration-none text-white ms-4" onClick={() => window.scrollTo(0, 0)}>
               See more
               <i className="fa-solid fa-caret-right ms-2"></i>
             </Link>
@@ -181,7 +183,7 @@ export default function Home() {
             <div className="col-lg-5 col-md-12 mb-5 deal-section">
               <div className="d-flex align-items-center">
                 <h3 className="text-white text-center">Best deals</h3>
-                <Link to="/best deals" className="text-decoration-none text-white ms-4">
+                <Link to="/best deals" className="text-decoration-none text-white ms-4" onClick={() => window.scrollTo(0, 0)}>
                   See more
                   <i className="fa-solid fa-caret-right ms-2"></i>
                 </Link>
@@ -191,7 +193,7 @@ export default function Home() {
             <div className="col-lg-5 col-12 deal-section">
               <div className="d-flex align-items-center">
                 <h3 className="text-white text-center">New deals</h3>
-                <Link to="/new deals" className="text-decoration-none text-white ms-4">
+                <Link to="/new deals" className="text-decoration-none text-white ms-4" onClick={() => window.scrollTo(0, 0)}>
                   See more
                   <i className="fa-solid fa-caret-right ms-2"></i>
                 </Link>
@@ -252,7 +254,7 @@ export default function Home() {
             </h2>
           </div>
           <div className="col-8">
-            <Link to={"/contact"}>
+            <Link to={"/contact"} onClick={() => window.scrollTo(0, 0)}>
               <button className="btn btn-primary fw-bold">Contact now!</button>
             </Link>
           </div>

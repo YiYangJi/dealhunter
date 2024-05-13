@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.contact__h1--title {
+  font-size: 5em;
+}
+
 .contact__bg-presentation-overlay {
   background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/contact.png");
   background-repeat: no-repeat;

@@ -9,7 +9,7 @@ import GameDetails from "./Components/GameDetails";
 import "./App.css";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
-import InterestingTitles from "./Components/InterestingTitles";
+import InterestingTitles from "./Components/Interesting Titles/InterestingTitles";
 import BestDeals from "./Components/BestDeals";
 import NewDeals from "./Components/NewDeals";
 

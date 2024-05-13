@@ -3,7 +3,7 @@ import { searchGame } from "../Services/file";
 import "./GameCard.css";
 import { Link } from "react-router-dom";
 
-export default function GameCard({ game, onLoading }) {
+export default function GameCard({ game }) {
   const [image, setImage] = useState(null);
 
   console.log("not working");

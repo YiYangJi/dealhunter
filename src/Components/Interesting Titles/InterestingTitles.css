@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.interestingTitles__h1--title {
+  font-size: 5em;
+}
+
+.interestingTitles__bg-presentation-overlay {
+  background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/interestingTitles.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 450px;
+}
+
+.accordion-button {
+  background-color: black;
+  color: white;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.accordion-body {
+  background-color: black;
+  color: white;
+  padding: 0;
+  margin-top: 0px;
+}
+
+.accordion-button.collapsed::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M2.646 4.646a.5.5 0 0 1 .708 0L8 9.293l4.646-4.647a.5.5 0 0 1 .708.708l-5 5a.5.5 0 0 1-.708 0l-5-5a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+/* ///////////////////////////////////// */
+/* RANGE SLIDER CSS */
+/* ///////////////////////////////////// */
+/* level settings 👇 */
+
+.slider {
+  /* slider */
+  --slider-width: 100%;
+  --slider-height: 6px;
+  --slider-bg: rgb(82, 82, 82);
+  --slider-border-radius: 999px;
+  /* level */
+  --level-color: #fff;
+  --level-transition-duration: .1s;
+  /* icon */
+  --icon-margin: 15px;
+  --icon-color: var(--slider-bg);
+  --icon-size: 25px;
+}
+
+.slider .level {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: var(--slider-width);
+  height: var(--slider-height);
+  background: var(--slider-bg);
+  overflow: hidden;
+  border-radius: var(--slider-border-radius);
+  -webkit-transition: height var(--level-transition-duration);
+  -o-transition: height var(--level-transition-duration);
+  transition: height var(--level-transition-duration);
+  cursor: inherit;
+}
+
+.slider .level::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  -webkit-box-shadow: -200px 0 0 200px var(--level-color);
+  box-shadow: -200px 0 0 200px var(--level-color);
+}
+
+.slider:hover .level {
+  height: calc(var(--slider-height) * 2);
+}
+
+/* ///////////////////////////////////// */
+/* RANGE SLIDER CSS */
+/* ///////////////////////////////////// */
+
+
+
+
+
+/* ///////////////////////////////////// */
+/* RADIO BUTTON CSS */
+/* ///////////////////////////////////// */
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__input:checked+.radio-button__label .radio-button__custom {
+  transform: translateY(-50%) scale(0.9);
+  border: 5px solid #4c8bf5;
+  color: #4c8bf5;
+}
+
+.radio-button__input:checked+.radio-button__label {
+  color: #4c8bf5;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: translateY(-50%) scale(1.2);
+  border-color: #4c8bf5;
+  box-shadow: 0 0 10px #4c8bf580;
+}
+
+
+
+
+/* ///////////////////////////////////// */
+/* RADIO BUTTON CSS */
+/* ///////////////////////////////////// */
+
+
+/* ///////////////////////////////////// */
+/* CHECKBOX CSS */
+/* ///////////////////////////////////// */
+.checkbox-wrapper-4 * {
+  box-sizing: border-box;
+  color: white;
+}
+
+.checkbox-wrapper-4 .cbx {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.checkbox-wrapper-4 .cbx:not(:last-child) {
+  margin-right: 6px;
+}
+
+.checkbox-wrapper-4 .cbx:hover {
+  background: rgba(0, 119, 255, 0.06);
+}
+
+.checkbox-wrapper-4 .cbx span {
+  float: left;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-4 .cbx span:first-child {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  transform: scale(1);
+  border: 1px solid #cccfdb;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
+}
+
+.checkbox-wrapper-4 .cbx span:first-child svg {
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+  transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-4 .cbx span:last-child {
+  padding-left: 8px;
+  line-height: 18px;
+}
+
+.checkbox-wrapper-4 .cbx:hover span:first-child {
+  border-color: #07f;
+}
+
+.checkbox-wrapper-4 .inp-cbx {
+  position: absolute;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-4 .inp-cbx:checked+.cbx span:first-child {
+  background: #07f;
+  border-color: #07f;
+  animation: wave-4 0.4s ease;
+}
+
+.checkbox-wrapper-4 .inp-cbx:checked+.cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper-4 .inline-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media screen and (max-width: 840px) {
+  .checkbox-wrapper-4 .cbx {
+    width: 100%;
+    display: inline-block;
+  }
+}
+
+@-moz-keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+@-webkit-keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+@-o-keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes wave-4 {
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+/* ///////////////////////////////////// */
+/* CHECKBOX CSS */
+/* ///////////////////////////////////// */
