@@ -26,8 +26,22 @@ export async function getListDeals() {
   return json;
 }
 
-export async function getAllListDeals() {
-  const urlFetch = listDeals;
+export async function getAllListDeals(page) {
+  const urlFetch = listDeals + `?pageNumber=${page}&pageSize=20`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+export async function getAllListDealsRadioFilter(time, page) {
+  const urlFetch = listDeals + `?maxAge=${time}&pageNumber=${page}&pageSize=2`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+export async function getAllListDealsCheckboxFilter(aaa, steamworks, onSale, page) {
+  const urlFetch = listDeals + `?AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=20`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;

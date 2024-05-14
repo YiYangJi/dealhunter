@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function CardBestDeals({ bestDeals }) {
-  console.log(bestDeals);
-
   if (!bestDeals[0] || !Array.isArray(bestDeals[0])) {
     return <div>Loading...</div>;
   }

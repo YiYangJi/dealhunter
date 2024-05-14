@@ -18,8 +18,33 @@ export default function Contact() {
   const [messageErrorMessage, setMessageErrorMessage] = useState();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [infoMessage, setInfoMessage] = useState();
 
-  const handleValidation = async (event) => {
+  const sendFormData = async (form) => {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    const response = await fetch("https://formspree.io/f/mqkrjqro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log("Formulario enviado con éxito");
+      form.reset();
+      setFormSubmitted(true);
+      setInfoMessage("Formulario enviado con éxito");
+    } else {
+      console.log("Error al enviar el formulario");
+      setFormSubmitted(false);
+      setInfoMessage("Error al enviar el formulario");
+    }
+  };
+
+  const handleValidation = (event) => {
     event.preventDefault();
     const email = /^\w+\.?\w+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
@@ -43,26 +68,10 @@ export default function Contact() {
       setEmailErrorMessage("");
     }
 
-    const form = event.currentTarget;
+    if (nameValidation && emailValidation && messageValidation && emailValidation.match(email)) {
+      const form = event.currentTarget;
 
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-
-    const response = await fetch("https://formspree.io/f/mqkrjqro", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      console.log("Formulario enviado con éxito");
-      form.reset();
-      setFormSubmitted(true);
-    } else {
-      console.log("Error al enviar el formulario");
-      setFormSubmitted(false);
+      sendFormData(form);
     }
   };
 
@@ -128,8 +137,8 @@ export default function Contact() {
               Submit
             </Button>
           </Form>
-          {formSubmitted && <p className="text-white mt-3">Form submitted successfully</p>}
-          {!formSubmitted && <p className="text-white mt-3">Error submitting the form, please try again later</p>}
+          {formSubmitted && <p className="text-white mt-3">{infoMessage}</p>}
+          {!formSubmitted && <p className="text-danger mt-3">{infoMessage}</p>}
         </div>
       </div>
     </>

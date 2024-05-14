@@ -314,7 +314,7 @@ export default function GameDetails() {
                   <div className="card-text d-flex flex-wrap">
                     {moreGameData && moreGameData.genres
                       ? moreGameData.genres.map((genre) => (
-                          <div className="btn btn-dark text-white mx-2 mb-3 pe-none" key={genre.id}>
+                          <div className="btn btn-dark text-white mx-1 mb-2 pe-none p-2" key={genre.id}>
                             {genre.name}
                           </div>
                         ))

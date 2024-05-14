@@ -3,8 +3,6 @@ import "./NewDeals.css";
 import { Link } from "react-router-dom";
 
 export default function CardNewDeals({ newDeals }) {
-  console.log(newDeals[0]);
-
   if (!newDeals[0] || !Array.isArray(newDeals[0])) {
     return <div>Loading...</div>;
   }
@@ -12,7 +10,7 @@ export default function CardNewDeals({ newDeals }) {
   return (
     <>
       {newDeals[0].map((game, index) => (
-        <Link to={`/game/${game.gameID}`} className="text-decoration-none">
+        <Link to={`/game/${game.gameID}`} className="text-decoration-none" key={game.gameID}>
           <div
             className="card newDeals__card bg-black text-light rounded-0 mx-auto"
             style={{

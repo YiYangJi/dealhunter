@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 export default function GameCard({ game }) {
   const [image, setImage] = useState(null);
 
-  console.log("not working");
-
   useEffect(() => {
     const fetchImage = async () => {
       let titleResults;

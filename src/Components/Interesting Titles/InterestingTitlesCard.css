@@ -3,7 +3,8 @@
 }
 
 .interestingTitles__img--height {
-
+  height: 176px;
+  width: 270px;
   object-fit: cover;
 }
 
