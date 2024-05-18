@@ -1,23 +1,50 @@
-.gameCard__details {
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 2.6em;
-  transition: height .5s ease-in-out;
+* {
+  box-sizing: border-box;
 }
 
-.gameCard__card:hover>.gameCard__details {
-  height: 8em;
+.interestingTitles__img--height {
+  height: 176px;
+  width: 270px;
+  object-fit: cover;
 }
 
-.gameCard__game-name {
-  height: 55px;
+.interestingTitles__p--salePrice {
+  font-size: 1.7em;
 }
 
-.gameCard__card {
-  min-height: 200px;
-  /* Asegura que la tarjeta tenga al menos 200px de altura */
+/* ///////////////////////////////////////////////// */
+/* STAR RATING CSS */
+/* ///////////////////////////////////////////////// */
+.ratings {
+  margin-right: 10px;
 }
 
-.gameCard__card img {
-  height: 200px;
+.ratings i {
+
+  color: #cecece;
+  font-size: 15px;
 }
+
+.rating-color {
+  color: #fbc634 !important;
+}
+
+.review-count {
+  font-weight: 400;
+  margin-bottom: 2px;
+  font-size: 24px !important;
+}
+
+.small-ratings i {
+  color: #cecece;
+}
+
+.review-stat {
+  font-weight: 300;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+/* ///////////////////////////////////////////////// */
+/* STAR RATING CSS */
+/* ///////////////////////////////////////////////// */

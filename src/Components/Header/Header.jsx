@@ -32,7 +32,7 @@ export default function Header() {
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-xl`}>DealHunter</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center">
+              <Nav className="justify-content-end flex-grow-1 pe-3 align-items-md-center">
                 <Link to="/" className="text-decoration-none text-white me-3 fs-5 fw-medium">
                   Home
                 </Link>
@@ -40,26 +40,20 @@ export default function Header() {
                   title={<span className="text-white fs-5 fw-medium">Games</span>}
                   id={`offcanvasNavbarDropdown-expand-xl`}
                   className="me-3">
-                  <NavDropdown.Item>
-                    <Link to="/interesting titles" className="text-decoration-none text-white me-3 fs-6 fw-medium">
-                      Interesting titles
-                    </Link>
+                  <NavDropdown.Item as={Link} to="/interesting titles" className="text-decoration-none text-white me-3 fs-6 fw-medium">
+                    Interesting titles
                   </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link to="/best deals" className="text-decoration-none text-white me-3 fs-6 fw-medium">
-                      Best Deals
-                    </Link>
+                  <NavDropdown.Item as={Link} to="/best deals" className="text-decoration-none text-white me-3 fs-6 fw-medium">
+                    Best Deals
                   </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Link to="/new deals" className="text-decoration-none text-white me-3 fs-6 fw-medium">
-                      New Deals
-                    </Link>
+                  <NavDropdown.Item as={Link} to="/new deals" className="text-decoration-none text-white me-3 fs-6 fw-medium">
+                    New Deals
                   </NavDropdown.Item>
                 </NavDropdown>
                 <Link to="/about" className="text-decoration-none text-white me-3 fs-5 fw-medium">
                   About
                 </Link>
-                <Link to="/contact" className="text-decoration-none text-white me-3 fs-5 fw-medium">
+                <Link to="/contact" className="text-decoration-none text-white me-3 fs-5 fw-medium mb-md-0 mb-3">
                   Contact
                 </Link>
               </Nav>

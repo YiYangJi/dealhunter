@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getBestDeals, getListDeals, getTopRated } from "../Services/file";
+import { getBestDeals, getListDeals, getNewDeals } from "../../Services/file";
 import "./Home.css";
 
 import CardBestDeals from "./CardBestDeals";
 import CardNewDeals from "./CardNewDeals";
 
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import GameCard from "./GameCard";
 import { Link } from "react-router-dom";
+import CarouselDeals from "./CarouselDeals";
+import Loading from "../Loading";
 
 export default function Home() {
   const [games, setGames] = useState([]);
@@ -49,9 +49,9 @@ export default function Home() {
       setIsLoading(false);
     };
 
-    const fetchTopRated = async () => {
+    const fetchNewDeals = async () => {
       const promises = [];
-      promises.push(getTopRated());
+      promises.push(getNewDeals());
       const response = await Promise.all(promises);
 
       const data = [];
@@ -64,7 +64,7 @@ export default function Home() {
 
     fetchListDeals();
     fetchBestDeals();
-    fetchTopRated();
+    fetchNewDeals();
   }, []);
 
   useEffect(() => {
@@ -79,19 +79,7 @@ export default function Home() {
   }, [games]);
 
   if (isLoading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center h-100 vh-100">
-        <div className="loader-wrapper">
-          <div className="packman"></div>
-          <div className="dots">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   } else {
     return (
       <>
@@ -122,63 +110,8 @@ export default function Home() {
               <i className="fa-solid fa-caret-right ms-2"></i>
             </Link>
           </div>
-          <Carousel
-            additionalTransfrom={0}
-            arrows
-            autoPlaySpeed={3000}
-            centerMode={false}
-            className=""
-            containerclassName="container"
-            dotListclassName=""
-            draggable
-            focusOnSelect={false}
-            infinite={false}
-            itemclassName=""
-            keyBoardControl
-            minimumTouchDrag={80}
-            pauseOnHover
-            renderArrowsWhenDisabled={false}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
-            responsive={{
-              desktop: {
-                breakpoint: {
-                  max: 3000,
-                  min: 1024,
-                },
-                items: 3,
-                partialVisibilityGutter: 40,
-              },
-              mobile: {
-                breakpoint: {
-                  max: 767,
-                  min: 0,
-                },
-                items: 1,
-                partialVisibilityGutter: 30,
-              },
-              tablet: {
-                breakpoint: {
-                  max: 1024,
-                  min: 767,
-                },
-                items: 2,
-                partialVisibilityGutter: 30,
-              },
-            }}
-            rewind={false}
-            rewindWithAnimation={false}
-            rtl={false}
-            shouldResetAutoplay
-            showDots={false}
-            sliderclassName=""
-            slidesToSlide={1}
-            swipeable>
-            {uniqueGames &&
-              uniqueGames.map((game) => {
-                return <GameCard game={game} key={game.gameID} />;
-              })}
-          </Carousel>
+          <CarouselDeals uniqueGames={uniqueGames} />
+
           <div className="row justify-content-center mt-5">
             <div className="col-lg-5 col-md-12 mb-5 deal-section">
               <div className="d-flex align-items-center">

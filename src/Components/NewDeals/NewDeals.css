@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.newDeals__h1--title {
+  font-size: 5em;
+}
+
+.newDeals__bg-presentation-overlay {
+  background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/newDeals.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  min-height: 450px;
+}

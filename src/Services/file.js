@@ -1,10 +1,10 @@
 const freeGames = "https://www.cheapshark.com/api/1.0/deals?upperPrice=0";
 const listOfGames = "https://www.cheapshark.com/api/1.0/games";
 const listDeals = "https://www.cheapshark.com/api/1.0/deals";
-const bestDeals = "https://www.cheapshark.com/api/1.0/deals?sortBy=Savings&pageSize=7";
-const topRatedGames = "https://www.cheapshark.com/api/1.0/deals?sortBy=Recent&pageSize=7";
-const ExactGame = "https://www.cheapshark.com/api/1.0/games?exact=1";
+const bestDeals = "https://www.cheapshark.com/api/1.0/deals?sortBy=Savings";
+const newDeals = "https://www.cheapshark.com/api/1.0/deals?sortBy=Recent";
 
+//getFreeGames() not used
 export async function getFreeGames() {
   const urlFetch = freeGames;
   const response = await fetch(urlFetch);
@@ -12,6 +12,7 @@ export async function getFreeGames() {
   return json;
 }
 
+//getListGames(name) used in SearchGame
 export async function getListGames(name) {
   const urlFetch = listOfGames + `?title=${name}`;
   const response = await fetch(urlFetch);
@@ -19,6 +20,15 @@ export async function getListGames(name) {
   return json;
 }
 
+//getExactGame(title) not used
+export async function getExactGame(title) {
+  const urlFetch = listOfGames + `?title=${title}&exact=1`;
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+//getListDeals() used in Home
 export async function getListDeals() {
   const urlFetch = listDeals + `?upperPrice=15&pageSize=10`;
   const response = await fetch(urlFetch);
@@ -26,50 +36,76 @@ export async function getListDeals() {
   return json;
 }
 
+//Best deals card used in Home.jsx
+export async function getBestDeals() {
+  const urlFetch = bestDeals + `&pageSize=7`;
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+//New deals card used in Home.jsx
+export async function getNewDeals() {
+  const urlFetch = newDeals + `&pageSize=7`;
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+//getAllListDeals() used in InterestingTitles
 export async function getAllListDeals(page) {
-  const urlFetch = listDeals + `?pageNumber=${page}&pageSize=20`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const urlFetch = listDeals + `?pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
 }
 
-export async function getAllListDealsRadioFilter(time, page) {
-  const urlFetch = listDeals + `?maxAge=${time}&pageNumber=${page}&pageSize=2`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+//getAllBestDeals() used in BestDeals
+export async function getAllBestDeals(page) {
+  const urlFetch = bestDeals + `&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
 }
 
-export async function getAllListDealsCheckboxFilter(aaa, steamworks, onSale, page) {
-  const urlFetch = listDeals + `?AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=20`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+//getAllNewDeals() used in NewDeals
+export async function getAllNewDeals(page) {
+  const urlFetch = newDeals + `&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
 }
 
+//getAllListDealsFilter(price, time, aaa, steamworks, onSale, page) used in Filter
+export async function getAllListDealsFilter(price, time, aaa, steamworks, onSale, page) {
+  const urlFetch =
+    listDeals + `?upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+//getAllListDealsFilter(price, time, aaa, steamworks, onSale, page) used in Filter
+export async function getAllBestDealsFilter(price, time, aaa, steamworks, onSale, page) {
+  const urlFetch =
+    bestDeals + `&upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+//getAllNewDealsFilter(price, time, aaa, steamworks, onSale, page) used in Filter
+export async function getAllNewDealsFilter(price, time, aaa, steamworks, onSale, page) {
+  const urlFetch =
+    newDeals + `&upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const response = await fetch(urlFetch);
+  const json = await response.json();
+  return json;
+}
+
+//getInfoGame(id) used in GameDetails
 export async function getInfoGame(id) {
   const urlFetch = listOfGames + `?id=${id}`;
-  const response = await fetch(urlFetch);
-  const json = await response.json();
-  return json;
-}
-
-export async function getBestDeals() {
-  const urlFetch = bestDeals;
-  const response = await fetch(urlFetch);
-  const json = await response.json();
-  return json;
-}
-
-export async function getTopRated() {
-  const urlFetch = topRatedGames;
-  const response = await fetch(urlFetch);
-  const json = await response.json();
-  return json;
-}
-
-export async function getExactGame(title) {
-  const urlFetch = listOfGames + `?title=${title}`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
@@ -97,10 +133,13 @@ export async function getExactGame(title) {
 // }
 
 //////////////////////////////////////////////////////////////////////////////////
+// Second API used to get game information and images
+//////////////////////////////////////////////////////////////////////////////////
 const apiRAWGKey = process.env.REACT_APP_RAWG_API_KEY;
 
 const searchGames = `https://api.rawg.io/api/games`;
 
+//searchGame(name) used in Home, SearchGame, InterestingTitles, BestDeals, NewDeals
 export async function searchGame(name) {
   const urlFetch = searchGames + `?key=${apiRAWGKey}&search=${name}&page_size=1`;
   const response = await fetch(urlFetch);
@@ -108,6 +147,7 @@ export async function searchGame(name) {
   return json;
 }
 
+//searchGameInfo(id) used in GameDetails
 export async function searchGameInfo(id) {
   const urlFetch = searchGames + `/${id}?key=${apiRAWGKey}`;
   const response = await fetch(urlFetch);

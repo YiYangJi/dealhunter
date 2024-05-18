@@ -2,6 +2,8 @@ import React from "react";
 import "./About.css";
 
 export default function About() {
+  window.scrollTo(0, 0);
+
   return (
     <>
       <div className="about__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">

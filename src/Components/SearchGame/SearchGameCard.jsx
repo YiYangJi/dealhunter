@@ -1,33 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { searchGame } from "../Services/file";
-import "./GameCard.css";
+import { useEffect, useState } from "react";
+import { getInfoGame, searchGame } from "../../Services/file";
 import { Link } from "react-router-dom";
 
-export default function InterestingTitlesCard({ game, setIsLoading }) {
+export default function GameCard({ game }) {
   const [image, setImage] = useState(null);
+  const [infoGame, setInfoGame] = useState(null);
 
   useEffect(() => {
     const fetchImage = async () => {
-      setIsLoading(true);
-      let titleResults;
+      const data = await getInfoGame(game.gameID);
+      let dataResult = [];
+      dataResult.push(data);
 
-      try {
-        titleResults = await searchGame(game.title);
-      } catch (error) {
-        console.error("Error fetching data from RAWG API", error);
-        setImage(backupImage);
-        setIsLoading(false);
-        return;
-      }
-
+      const titleResults = await searchGame(dataResult[0].info.title);
       let gameResult = [];
-
-      if (titleResults.results[0]) {
+      if (titleResults.results[0] && titleResults.results[0].id !== data.id) {
         gameResult.push(titleResults.results[0]);
       }
 
       setImage(gameResult[0]);
-      setIsLoading(false);
+      setInfoGame(dataResult[0]);
     };
 
     fetchImage();
@@ -49,7 +41,7 @@ export default function InterestingTitlesCard({ game, setIsLoading }) {
               <img
                 src={image && image.background_image ? image.background_image : backupImage}
                 className="img-fluid rounded-start interestingTitles__img--height w-100"
-                alt={game.title}
+                alt={infoGame ? infoGame.info.title : ""}
                 onError={handleError}
               />
             </div>
@@ -57,7 +49,7 @@ export default function InterestingTitlesCard({ game, setIsLoading }) {
               <div className="card-body">
                 <div className="row">
                   <div className="col-xl-7 col-lg-8 col-md-8 col-sm-8 col-12">
-                    <h5 className="card-title fs-5">{game.title}</h5>
+                    <h5 className="card-title fs-5">{infoGame && infoGame.info ? infoGame.info.title : ""}</h5>
                     <p className="text-secondary m-0">
                       Release Date: <span className="text-white">{image && image.released ? image.released : "Loading..."}</span>
                     </p>
@@ -83,12 +75,12 @@ export default function InterestingTitlesCard({ game, setIsLoading }) {
                     </div>
                   </div>
                   <div className="col-xl-5 col-lg-4 col-md-4 col-sm-4 col-12 text-end">
-                    <p className="card-text interestingTitles__p--salePrice fw-bold">~{game.salePrice}€</p>
+                    <p className="card-text interestingTitles__p--salePrice fw-bold">~{infoGame ? infoGame.deals[0].price : ""}€</p>
                     <p className="card-text text-secondary d-sm-block d-none">
-                      Original Price: <span className="text-white">{game.normalPrice}€</span>
+                      Original Price: <span className="text-white">{infoGame ? infoGame.deals[0].retailPrice : ""}€</span>
                     </p>
                     <p className="card-text text-secondary d-sm-block d-none">
-                      Discount: <span className="text-white">{Math.round(game.savings)}%</span>
+                      Discount: <span className="text-white">{Math.round(infoGame ? infoGame.deals[0].savings : "")}%</span>
                     </p>
                   </div>
                 </div>

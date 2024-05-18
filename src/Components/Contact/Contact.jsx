@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 export default function Contact() {
+  window.scrollTo(0, 0);
+
   const [emailValidation, setEmailValidation] = useState();
   const [emailErrorMessage, setEmailErrorMessage] = useState();
 

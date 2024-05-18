@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "../Interesting Titles/InterestingTitles.css";
-import { getAllListDeals, getAllListDealsFilter } from "../../Services/file";
+import "./BestDeals.css";
+import { getAllBestDeals, getAllBestDealsFilter } from "../../Services/file";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import ListCards from "../ListCards";
 import Loading from "../Loading";
-import "../Filter.css";
 
 export default function InterestingTitles() {
   const [InterestingGames, setInterestingGames] = useState([]);
@@ -28,7 +27,7 @@ export default function InterestingTitles() {
 
     const fetchListDeals = async () => {
       const promises = [];
-      promises.push(getAllListDeals(page));
+      promises.push(getAllBestDeals(page));
       const response = await Promise.all(promises);
 
       const data = [];
@@ -80,7 +79,7 @@ export default function InterestingTitles() {
     const fetchListDealsFilter = async () => {
       const promises = [];
       promises.push(
-        getAllListDealsFilter(
+        getAllBestDealsFilter(
           priceLimit,
           radioSelectedOption,
           Number(checkboxes.checkbox1),
@@ -134,9 +133,9 @@ export default function InterestingTitles() {
 
   return (
     <>
-      <div className="interestingTitles__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
+      <div className="bestDeals__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
         <div className="text-white">
-          <h1 className="pt-5 fw-bold mb-5 interestingTitles__h1--title">Interesting titles</h1>
+          <h1 className="pt-5 fw-bold mb-5 bestDeals__h1--title">Best deals</h1>
         </div>
       </div>
 

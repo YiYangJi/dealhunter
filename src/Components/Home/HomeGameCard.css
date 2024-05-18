@@ -1,0 +1,23 @@
+.gameCard__details {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 2.6em;
+  transition: height .5s ease-in-out;
+}
+
+.gameCard__card:hover>.gameCard__details {
+  height: 8em;
+}
+
+.gameCard__game-name {
+  height: 55px;
+}
+
+.gameCard__card {
+  min-height: 200px;
+  /* Asegura que la tarjeta tenga al menos 200px de altura */
+}
+
+.gameCard__card img {
+  height: 200px;
+}

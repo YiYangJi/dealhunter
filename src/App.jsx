@@ -1,17 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./Components/Home";
-import Header from "./Components/Header";
-import SearchGame from "./Components/SearchGame";
-import Footer from "./Components/Footer";
-import GameDetails from "./Components/GameDetails";
+import Home from "./Components/Home/Home";
+import Header from "./Components/Header/Header";
+import SearchGame from "./Components/SearchGame/SearchGame";
+import Footer from "./Components/Footer/Footer";
+import GameDetails from "./Components/GameDetails/GameDetails";
 
 import "./App.css";
-import About from "./Components/About";
-import Contact from "./Components/Contact";
+import About from "./Components/About/About";
+import Contact from "./Components/Contact/Contact";
 import InterestingTitles from "./Components/Interesting Titles/InterestingTitles";
-import BestDeals from "./Components/BestDeals";
-import NewDeals from "./Components/NewDeals";
+import BestDeals from "./Components/BestDeals/BestDeals";
+import NewDeals from "./Components/NewDeals/NewDeals";
 
 function App() {
   return (
