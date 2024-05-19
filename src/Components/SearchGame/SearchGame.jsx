@@ -3,29 +3,64 @@ import { useLocation } from "react-router-dom";
 import { getListGames } from "../../Services/file";
 import SearchGameListCards from "./SearchGameListCards";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./SearchGame.css";
 
 export default function SearchGame() {
   const location = useLocation();
-  const nameGame = location.pathname.split("/")[2];
+  const nameGame = decodeURIComponent(location.pathname.split("/")[2]);
 
   const [relatedGames, setRelatedGames] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   // const [searchFilteredGames, setSearchFilteredGames] = useState([]);
 
+  let toastDisplayed = false;
+
   const fetchGames = async () => {
-    const promises = [];
-    promises.push(getListGames(nameGame));
-    const response = await Promise.all(promises);
+    setIsLoading(true);
+    try {
+      const promises = [];
+      promises.push(getListGames(nameGame));
+      const response = await Promise.all(promises);
 
-    const data = [];
-    response.forEach((res) => {
-      data.push(res);
-    });
+      if (
+        response[0] &&
+        !response[0].ok &&
+        response[0] &&
+        response[0].error &&
+        response[0].error.includes("You are being temporarily blocked due to rate limiting")
+      ) {
+        if (!toastDisplayed) {
+          toast.error(<div className="text-center">You have made too many requests. Please try again later.</div>);
+          toastDisplayed = true;
+        }
+      }
 
-    const matchingGames = data[0].filter((game) => game.external.toLowerCase().startsWith(nameGame.toLowerCase()));
+      const data = [];
+      response.forEach((res) => {
+        data.push(res);
+      });
 
-    setRelatedGames(matchingGames);
-    // setSearchFilteredGames(data);
+      let matchingGames = [];
+
+      if (data && data[0]) {
+        matchingGames = data[0].filter((game) => game.external.toLowerCase().startsWith(nameGame.toLowerCase()));
+      }
+
+      setRelatedGames(matchingGames);
+
+      console.log(matchingGames);
+      // setSearchFilteredGames(data);
+    } catch (error) {
+      if (!toastDisplayed) {
+        toast.error("Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.");
+        toastDisplayed = true;
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -73,7 +108,8 @@ export default function SearchGame() {
 
   return (
     <div className="container mt-5 pt-5">
-      <h2 className="text-white mb-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
+      <h2 className="text-white my-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
+      <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
       {/* <div className="mb-4">
         <button className="btn btn-secondary toggle-btn" onClick={togglePanel}>
           <i className="fas fa-filter me-2"></i>Filter
@@ -113,7 +149,7 @@ export default function SearchGame() {
           </div>
         </div>
       </div> */}
-      <SearchGameListCards games={relatedGames} />
+      <SearchGameListCards games={relatedGames} isLoading={isLoading} />
     </div>
   );
 }

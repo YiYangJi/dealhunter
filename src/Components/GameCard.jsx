@@ -3,7 +3,7 @@ import { searchGame } from "../Services/file";
 import "./GameCard.css";
 import { Link } from "react-router-dom";
 
-export default function InterestingTitlesCard({ game, setIsLoading }) {
+export default function GameCard({ game, setIsLoading }) {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
@@ -59,7 +59,8 @@ export default function InterestingTitlesCard({ game, setIsLoading }) {
                   <div className="col-xl-7 col-lg-8 col-md-8 col-sm-8 col-12">
                     <h5 className="card-title fs-5">{game.title}</h5>
                     <p className="text-secondary m-0">
-                      Release Date: <span className="text-white">{image && image.released ? image.released : "Loading..."}</span>
+                      Release Date:{" "}
+                      <span className="text-white">{image && image.released ? image.released : "Failed to load resource"}</span>
                     </p>
                     <p className="text-secondary m-0">
                       Genres:{" "}

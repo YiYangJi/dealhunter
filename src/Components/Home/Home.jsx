@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getBestDeals, getListDeals, getNewDeals } from "../../Services/file";
 import "./Home.css";
 
@@ -10,6 +10,9 @@ import { Link } from "react-router-dom";
 import CarouselDeals from "./CarouselDeals";
 import Loading from "../Loading";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Home() {
   const [games, setGames] = useState([]);
   const [uniqueGames, setUniqueGames] = useState([]);
@@ -18,6 +21,8 @@ export default function Home() {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const toastDisplayedRef = useRef(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -25,6 +30,16 @@ export default function Home() {
       const promises = [];
       promises.push(getListDeals());
       const response = await Promise.all(promises);
+
+      if (
+        response[0] &&
+        !response[0].ok &&
+        response[0] &&
+        response[0].error &&
+        response[0].error.includes("You are being temporarily blocked due to rate limiting")
+      ) {
+        toast.error(<div className="text-center">You have made too many requests. Please try again later.</div>);
+      }
 
       const data = [];
       response.forEach((res) => {
@@ -192,6 +207,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
       </>
     );
   }

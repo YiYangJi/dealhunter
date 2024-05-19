@@ -3,7 +3,10 @@ import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
-export default function SearchInput() {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export default function SearchInput({ onClose }) {
   const [nameGame, setNameGame] = useState("");
   const [mensajeError, setMensajeError] = useState("");
 
@@ -15,13 +18,13 @@ export default function SearchInput() {
     // En caso de que el campo esté vacio:
     if (!nameGame) {
       // El error será que no ha rellenado el campo
-      setMensajeError("Introduce an ingredient");
+      toast.error(<div className="text-center">Introduce a game</div>);
     } else {
       // Sino, vaciamos el mensaje de error
       setMensajeError("");
-
       navigate(`/searchGame/${nameGame}`);
-      // No necesitas llamar a e.target.form.submit()
+      setNameGame("");
+      onClose();
     }
   };
 
@@ -33,14 +36,15 @@ export default function SearchInput() {
           placeholder="Search"
           className="me-2"
           aria-label="Search"
-          onKeyUp={(e) => setNameGame(e.target.value)}
+          onChange={(e) => setNameGame(e.target.value)}
+          value={nameGame}
         />
         <Button variant="outline-success" type="submit">
           Search
         </Button>
       </Form>
 
-      <p className="error-feedback text-danger p-0 mb-0 text-center">{mensajeError}</p>
+      <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
     </>
   );
 }

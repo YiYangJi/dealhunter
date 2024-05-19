@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./NewDeals.css";
 import { getAllNewDeals, getAllNewDealsFilter } from "../../Services/file";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import ListCards from "../ListCards";
 import Loading from "../Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function InterestingTitles() {
   const [InterestingGames, setInterestingGames] = useState([]);
@@ -21,6 +23,7 @@ export default function InterestingTitles() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const toastDisplayedRef = useRef(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,6 +32,19 @@ export default function InterestingTitles() {
       const promises = [];
       promises.push(getAllNewDeals(page));
       const response = await Promise.all(promises);
+
+      if (
+        response[0] &&
+        !response[0].ok &&
+        response[0] &&
+        response[0].error &&
+        response[0].error.includes("You are being temporarily blocked due to rate limiting")
+      ) {
+        if (!toastDisplayedRef.current) {
+          toast.error(<div className="text-center">You have made too many requests. Please try again later.</div>);
+          toastDisplayedRef.current = true;
+        }
+      }
 
       const data = [];
       response.forEach((res) => {
@@ -339,6 +355,7 @@ export default function InterestingTitles() {
           </button>
         </div>
       </div>
+      <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
     </>
   );
 }
