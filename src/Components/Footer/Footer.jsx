@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -8,41 +9,41 @@ export default function Footer() {
           <div className="row text-center d-flex justify-content-center pt-4">
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
-                <a href="#!" className="text-white">
+                <Link to={"/about"} className="text-white">
                   About
-                </a>
+                </Link>
               </h6>
             </div>
 
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
-                <a href="#!" className="text-white">
+                <Link to={"/new deals"} className="text-white">
                   New Deals
-                </a>
+                </Link>
               </h6>
             </div>
 
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
-                <a href="#!" className="text-white">
+                <Link to={"/interesting titles"} className="text-white">
                   Interesting titles
-                </a>
+                </Link>
               </h6>
             </div>
 
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
-                <a href="#!" className="text-white">
+                <Link to={"/best deals"} className="text-white">
                   Best deals
-                </a>
+                </Link>
               </h6>
             </div>
 
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
-                <a href="#!" className="text-white">
+                <Link to={"/contact"} className="text-white">
                   Contact
-                </a>
+                </Link>
               </h6>
             </div>
           </div>

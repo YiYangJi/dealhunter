@@ -152,12 +152,12 @@ export default function InterestingTitles() {
   return (
     <>
       <div className="interestingTitles__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
-        <div className="text-white">
+        <div className="text-white text-center">
           <h1 className="pt-5 fw-bold mb-5 interestingTitles__h1--title">Interesting titles</h1>
         </div>
       </div>
 
-      <div className="container mx-auto row justify-content-center mt-5">
+      <div className="container mx-auto row justify-content-center my-5">
         <div className="col-lg-3 col-md-9 text-white mb-lg-0 mb-5">
           <div className="p-3 bg-black rounded">
             <div className="d-flex justify-content-between align-items-center">
@@ -348,11 +348,11 @@ export default function InterestingTitles() {
           {isLoading && <Loading />}
           {filteredInterestingGames && <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />}
         </div>
-        <div className="d-flex justify-content-center">
-          <button className="btn btn-primary me-5" onClick={handlePreviousPage}>
+        <div className="d-flex justify-content-center mt-3">
+          <button class="interestingTitles__button--pagination me-5" onClick={handlePreviousPage}>
             Previous
           </button>
-          <button className="btn btn-primary" onClick={handleNextPage}>
+          <button class="interestingTitles__button--pagination" onClick={handleNextPage}>
             Next
           </button>
         </div>

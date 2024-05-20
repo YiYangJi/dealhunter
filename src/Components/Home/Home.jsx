@@ -202,12 +202,20 @@ export default function Home() {
             </h2>
           </div>
           <div className="col-8">
-            <Link to={"/contact"} onClick={() => window.scrollTo(0, 0)}>
-              <button className="btn btn-primary fw-bold">Contact now!</button>
+            <Link to={"/contact"} onClick={() => window.scrollTo(0, 0)} className="text-decoration-none d-inline-block">
+              <button className="home__button--contact bg-primary">
+                <p className="home__button-text--contact">Contact now!</p>{" "}
+                <p className="iconer">
+                  <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+                  </svg>
+                </p>
+              </button>
             </Link>
           </div>
         </div>
-        <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
+        <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
       </>
     );
   }

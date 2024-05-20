@@ -18,6 +18,10 @@ export default function SearchGame() {
 
   let toastDisplayed = false;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const fetchGames = async () => {
     setIsLoading(true);
     try {
@@ -107,49 +111,52 @@ export default function SearchGame() {
   // };
 
   return (
-    <div className="container mt-5 pt-5">
-      <h2 className="text-white my-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
-      <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
-      {/* <div className="mb-4">
-        <button className="btn btn-secondary toggle-btn" onClick={togglePanel}>
-          <i className="fas fa-filter me-2"></i>Filter
-        </button>
-        <div ref={panelRef} className={`side-panel ${showPanel ? "show" : ""} bg-black text-white`}>
-          <div className="p-3">
-            <h5 className="mb-4">Filter Options</h5>
-            <div className="mb-3">
-              <label htmlFor="price" className="form-label">
-                Price
-              </label>
-              <select className="form-select" id="price">
-                <option selected>Any</option>
-                <option value="asc">Low to High</option>
-                <option value="desc">High to Low</option>
-              </select>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="genre" className="form-label">
-                Genre
-              </label>
-              <select className="form-select" id="genre">
-                <option selected>All Genres</option>
-                <option>Action</option>
-                <option>Adventure</option>
-                <option>RPG</option>
-              </select>
-            </div>
-            <div className="text-center">
-              <button className="btn btn-secondary mb-3" onClick={cleanFilter}>
-                Reset Filters
-              </button>
-              <button className="btn btn-primary" onClick={handleFilter}>
-                Apply Filters
-              </button>
+    <>
+      <div className="container mt-5 pt-5">
+        <h2 className="text-white my-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
+
+        {/* <div className="mb-4">
+          <button className="btn btn-secondary toggle-btn" onClick={togglePanel}>
+            <i className="fas fa-filter me-2"></i>Filter
+          </button>
+          <div ref={panelRef} className={`side-panel ${showPanel ? "show" : ""} bg-black text-white`}>
+            <div className="p-3">
+              <h5 className="mb-4">Filter Options</h5>
+              <div className="mb-3">
+                <label htmlFor="price" className="form-label">
+                  Price
+                </label>
+                <select className="form-select" id="price">
+                  <option selected>Any</option>
+                  <option value="asc">Low to High</option>
+                  <option value="desc">High to Low</option>
+                </select>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="genre" className="form-label">
+                  Genre
+                </label>
+                <select className="form-select" id="genre">
+                  <option selected>All Genres</option>
+                  <option>Action</option>
+                  <option>Adventure</option>
+                  <option>RPG</option>
+                </select>
+              </div>
+              <div className="text-center">
+                <button className="btn btn-secondary mb-3" onClick={cleanFilter}>
+                  Reset Filters
+                </button>
+                <button className="btn btn-primary" onClick={handleFilter}>
+                  Apply Filters
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </div> */}
-      <SearchGameListCards games={relatedGames} isLoading={isLoading} />
-    </div>
+        </div> */}
+        <SearchGameListCards games={relatedGames} isLoading={isLoading} />
+      </div>
+      <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
+    </>
   );
 }

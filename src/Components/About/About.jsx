@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./About.css";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function About() {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -85,6 +90,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );
 }

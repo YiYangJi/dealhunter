@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Contact.css";
 
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -7,9 +7,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-export default function Contact() {
-  window.scrollTo(0, 0);
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+export default function Contact() {
   const [emailValidation, setEmailValidation] = useState();
   const [emailErrorMessage, setEmailErrorMessage] = useState();
 
@@ -19,8 +20,9 @@ export default function Contact() {
   const [messageValidation, setMessageValidation] = useState();
   const [messageErrorMessage, setMessageErrorMessage] = useState();
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [infoMessage, setInfoMessage] = useState();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const sendFormData = async (form) => {
     const formData = new FormData(form);
@@ -35,14 +37,12 @@ export default function Contact() {
     });
 
     if (response.ok) {
-      console.log("Formulario enviado con éxito");
+      console.log("Form successfully submitted");
       form.reset();
-      setFormSubmitted(true);
-      setInfoMessage("Formulario enviado con éxito");
+      toast.success(<div className="text-center">Form successfully submitted</div>);
     } else {
-      console.log("Error al enviar el formulario");
-      setFormSubmitted(false);
-      setInfoMessage("Error al enviar el formulario");
+      console.log("Error submitting form, please try again later");
+      toast.error(<div className="text-center">Error submitting form, please try again later</div>);
     }
   };
 
@@ -135,14 +135,14 @@ export default function Contact() {
                 <p className="ps-2 text-danger">{messageErrorMessage}</p>
               </FloatingLabel>
             </Row>
-            <Button variant="primary" type="submit">
+
+            <button className="contact__btn--style" type="submit">
               Submit
-            </Button>
+            </button>
           </Form>
-          {formSubmitted && <p className="text-white mt-3">{infoMessage}</p>}
-          {!formSubmitted && <p className="text-danger mt-3">{infoMessage}</p>}
         </div>
       </div>
+      <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );
 }

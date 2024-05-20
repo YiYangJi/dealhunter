@@ -40,3 +40,63 @@
   color: white;
   border: none;
 } */
+
+/* Button pagination styles */
+.interestingTitles__button--pagination {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #000000;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+.interestingTitles__button--pagination:hover {
+  background-color: #111111;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.interestingTitles__button--pagination:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.3);
+}
+
+.interestingTitles__button--pagination:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.interestingTitles__button--pagination:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.interestingTitles__button--pagination::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.interestingTitles__button--pagination:hover::before {
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+}
