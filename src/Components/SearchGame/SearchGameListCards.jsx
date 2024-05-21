@@ -1,6 +1,6 @@
 import React from "react";
 import SearchGameCard from "./SearchGameCard";
-import Loading from "../Loading";
+import Loading from "../Loading/Loading";
 
 export default function SearchGameListCards({ games, isLoading }) {
   let uniqueGames =

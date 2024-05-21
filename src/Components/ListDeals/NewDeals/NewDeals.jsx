@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./BestDeals.css";
-import { getAllBestDeals, getAllBestDealsFilter } from "../../Services/file";
+import "./NewDeals.css";
+import { getAllNewDeals, getAllNewDealsFilter } from "../../../Services/file";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import ListCards from "../ListCards";
-import Loading from "../Loading";
+import Loading from "../../Loading/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -30,7 +30,7 @@ export default function InterestingTitles() {
 
     const fetchListDeals = async () => {
       const promises = [];
-      promises.push(getAllBestDeals(page));
+      promises.push(getAllNewDeals(page));
       const response = await Promise.all(promises);
 
       if (
@@ -95,7 +95,7 @@ export default function InterestingTitles() {
     const fetchListDealsFilter = async () => {
       const promises = [];
       promises.push(
-        getAllBestDealsFilter(
+        getAllNewDealsFilter(
           priceLimit,
           radioSelectedOption,
           Number(checkboxes.checkbox1),
@@ -149,9 +149,9 @@ export default function InterestingTitles() {
 
   return (
     <>
-      <div className="bestDeals__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
+      <div className="newDeals__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
         <div className="text-white text-center">
-          <h1 className="pt-5 fw-bold mb-5 bestDeals__h1--title">Best deals</h1>
+          <h1 className="pt-5 fw-bold mb-5 newDeals__h1--title">New deals</h1>
         </div>
       </div>
 

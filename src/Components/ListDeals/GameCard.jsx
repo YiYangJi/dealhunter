@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { searchGame } from "../Services/file";
+import { searchGame } from "../../Services/file";
 import "./GameCard.css";
 import { Link } from "react-router-dom";
 

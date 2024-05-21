@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./NewDeals.css";
-import { getAllNewDeals, getAllNewDealsFilter } from "../../Services/file";
+import "./InterestingTitles.css";
+import { getAllListDeals, getAllListDealsFilter } from "../../../Services/file";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import ListCards from "../ListCards";
-import Loading from "../Loading";
+import Loading from "../../Loading/Loading";
+import "../Filter.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,6 +24,7 @@ export default function InterestingTitles() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+
   const toastDisplayedRef = useRef(false);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function InterestingTitles() {
 
     const fetchListDeals = async () => {
       const promises = [];
-      promises.push(getAllNewDeals(page));
+      promises.push(getAllListDeals(page));
       const response = await Promise.all(promises);
 
       if (
@@ -95,7 +97,7 @@ export default function InterestingTitles() {
     const fetchListDealsFilter = async () => {
       const promises = [];
       promises.push(
-        getAllNewDealsFilter(
+        getAllListDealsFilter(
           priceLimit,
           radioSelectedOption,
           Number(checkboxes.checkbox1),
@@ -149,9 +151,9 @@ export default function InterestingTitles() {
 
   return (
     <>
-      <div className="newDeals__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
+      <div className="interestingTitles__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
         <div className="text-white text-center">
-          <h1 className="pt-5 fw-bold mb-5 newDeals__h1--title">New deals</h1>
+          <h1 className="pt-5 fw-bold mb-5 interestingTitles__h1--title">Interesting titles</h1>
         </div>
       </div>
 
@@ -347,10 +349,10 @@ export default function InterestingTitles() {
           {filteredInterestingGames && <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />}
         </div>
         <div className="d-flex justify-content-center mt-3">
-          <button class="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
+          <button class="interestingTitles__button--pagination me-5" onClick={handlePreviousPage}>
             Previous
           </button>
-          <button class="newDeals__button--pagination" onClick={handleNextPage}>
+          <button class="interestingTitles__button--pagination" onClick={handleNextPage}>
             Next
           </button>
         </div>

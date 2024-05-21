@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../Interesting Titles/InterestingTitles.css";
-import { getAllListDeals, getAllListDealsFilter } from "../../Services/file";
+import "./BestDeals.css";
+import { getAllBestDeals, getAllBestDealsFilter } from "../../../Services/file";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import ListCards from "../ListCards";
-import Loading from "../Loading";
-import "../Filter.css";
+import Loading from "../../Loading/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,7 +23,6 @@ export default function InterestingTitles() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-
   const toastDisplayedRef = useRef(false);
 
   useEffect(() => {
@@ -32,7 +30,7 @@ export default function InterestingTitles() {
 
     const fetchListDeals = async () => {
       const promises = [];
-      promises.push(getAllListDeals(page));
+      promises.push(getAllBestDeals(page));
       const response = await Promise.all(promises);
 
       if (
@@ -97,7 +95,7 @@ export default function InterestingTitles() {
     const fetchListDealsFilter = async () => {
       const promises = [];
       promises.push(
-        getAllListDealsFilter(
+        getAllBestDealsFilter(
           priceLimit,
           radioSelectedOption,
           Number(checkboxes.checkbox1),
@@ -151,9 +149,9 @@ export default function InterestingTitles() {
 
   return (
     <>
-      <div className="interestingTitles__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
+      <div className="bestDeals__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
         <div className="text-white text-center">
-          <h1 className="pt-5 fw-bold mb-5 interestingTitles__h1--title">Interesting titles</h1>
+          <h1 className="pt-5 fw-bold mb-5 bestDeals__h1--title">Best deals</h1>
         </div>
       </div>
 
@@ -349,10 +347,10 @@ export default function InterestingTitles() {
           {filteredInterestingGames && <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />}
         </div>
         <div className="d-flex justify-content-center mt-3">
-          <button class="interestingTitles__button--pagination me-5" onClick={handlePreviousPage}>
+          <button class="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
             Previous
           </button>
-          <button class="interestingTitles__button--pagination" onClick={handleNextPage}>
+          <button class="newDeals__button--pagination" onClick={handleNextPage}>
             Next
           </button>
         </div>

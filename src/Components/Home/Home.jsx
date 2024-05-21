@@ -8,7 +8,7 @@ import CardNewDeals from "./CardNewDeals";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import CarouselDeals from "./CarouselDeals";
-import Loading from "../Loading";
+import Loading from "../Loading/Loading";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

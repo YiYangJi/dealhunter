@@ -9,9 +9,9 @@ import GameDetails from "./Components/GameDetails/GameDetails";
 import "./App.css";
 import About from "./Components/About/About";
 import Contact from "./Components/Contact/Contact";
-import InterestingTitles from "./Components/Interesting Titles/InterestingTitles";
-import BestDeals from "./Components/BestDeals/BestDeals";
-import NewDeals from "./Components/NewDeals/NewDeals";
+import InterestingTitles from "./Components/ListDeals/Interesting Titles/InterestingTitles";
+import BestDeals from "./Components/ListDeals/BestDeals/BestDeals";
+import NewDeals from "./Components/ListDeals/NewDeals/NewDeals";
 
 function App() {
   return (
