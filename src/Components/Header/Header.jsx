@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./Header.css";
+
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput";
 
@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <header className="mb-5">
-      <Navbar expand="md" className="bg-body-tertiary p-0" bg="dark" data-bs-theme="dark" fixed="top">
+      <Navbar expand="md" className="bg-body-tertiary p-0" data-bs-theme="dark" fixed="top">
         <Container fluid className="container">
           <Navbar.Brand>
             <Link to="/">

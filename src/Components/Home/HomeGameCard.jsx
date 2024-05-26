@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { searchGame } from "../../Services/file";
+import { searchGame } from "../../Services/AsyncFunctions";
 import "./HomeGameCard.css";
 import { Link } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./BestDeals.css";
-import { getAllBestDeals, getAllBestDealsFilter } from "../../../Services/file";
+import { getAllBestDeals, getAllBestDealsFilter } from "../../../Services/AsyncFunctions";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import ListCards from "../ListCards";
 import Loading from "../../Loading/Loading";

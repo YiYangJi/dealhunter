@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getBestDeals, getListDeals, getNewDeals } from "../../Services/file";
+import { getBestDeals, getListDeals, getNewDeals } from "../../Services/AsyncFunctions";
 import "./Home.css";
 
 import CardBestDeals from "./CardBestDeals";

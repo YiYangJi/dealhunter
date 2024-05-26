@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import { storesArray } from "../../Services/script";
+import { storesArray } from "../../Services/StoreArray";
 
 import "./GameDetails.css";
 
 import { useNavigate, useParams } from "react-router-dom";
-import { getInfoGame, searchGame, searchGameInfo } from "../../Services/file";
+import { getInfoGame, searchGame, searchGameInfo } from "../../Services/AsyncFunctions";
 
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getListGames } from "../../Services/file";
+import { getListGames } from "../../Services/AsyncFunctions";
 import SearchGameListCards from "./SearchGameListCards";
 
 import { ToastContainer, toast } from "react-toastify";
