@@ -8,7 +8,7 @@
   font-size: 5em;
 }
 
-.contact__bg-presentation-overlay {
+.contact__bg-presentation--overlay {
   background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/contact.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,12 +16,13 @@
   min-height: 450px;
 }
 
-.contact__p-fs {
+.contact__p--fs {
   font-size: 1.1rem;
 }
 
+/* /////////////////////////////////////////////////////////// */
 /* Contact button styles */
-
+/* /////////////////////////////////////////////////////////// */
 .contact__btn--style {
   display: inline-block;
   font-family: sans-serif;

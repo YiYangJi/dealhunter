@@ -1,76 +1,98 @@
+// Importa las librerías de react
 import React, { useEffect, useState } from "react";
 
-import { storesArray } from "../../Services/StoreArray";
+import { storesArray } from "../../Services/StoreArray"; // Importa el array de plataformas de juegos
+import "./GameDetails.css"; // Importa el archivo de css
+import { useParams } from "react-router-dom"; // Importa las librerías de react-router-dom
+import { getInfoGame, searchGame, searchGameInfo } from "../../Services/AsyncFunctions"; // Importa las funciones asincrónicas
 
-import "./GameDetails.css";
-
-import { useNavigate, useParams } from "react-router-dom";
-import { getInfoGame, searchGame, searchGameInfo } from "../../Services/AsyncFunctions";
-
+// Importa las librerías de react-bootstrap
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
+// Importa las librerías de react-toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// Define y exporta la función GameDetails
 export default function GameDetails() {
-  const navigate = useNavigate();
+  const { id } = useParams(); // Obtiene el id de la URL
 
-  const { id } = useParams();
-
-  const [gameData, setGameData] = useState(null);
-  const [moreGameData, setMoreGameData] = useState(null);
+  const [gameData, setGameData] = useState(null); // Define el estado de gameData
+  const [moreGameData, setMoreGameData] = useState(null); // Define el estado de moreGameData
+  const [error, setError] = useState(null); // Define el estado de error
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Desplaza la ventana al inicio de la página
 
+    // Función asincrónica para obtener los detalles del juego
     const fetchGameDetails = async () => {
       try {
-        const data = await getInfoGame(id);
+        const data = await getInfoGame(id); // Obtiene la información del juego
 
+        // Si hay datos
         if (data) {
-          setGameData(data);
+          setGameData(data); // Establece los datos del juego en gameData
         }
 
-        let moreData = await searchGame(data.info.title);
-        moreData = await searchGameInfo(moreData.results[0].id);
+        let moreData = await searchGame(data.info.title); // Busca el juego por título en la API de RAWG
+        moreData = await searchGameInfo(moreData.results[0].id); // Obtiene la información detallada del juego
 
         console.log(moreData);
 
+        // Si moreData tiene datos
         if (moreData) {
-          setMoreGameData(moreData);
+          setMoreGameData(moreData); // Establece los datos detallados del juego en moreGameData
         }
       } catch (error) {
-        console.error("Error fetching meal details:", error);
+        console.error("Error fetching meal details:", error); // Muestra un mensaje de error en la consola
+        setError("Error loading resources. Please try again."); // Establece un mensaje de error
       }
     };
 
-    fetchGameDetails();
+    fetchGameDetails(); // Ejecuta a la función fetchGameDetails
   }, [id]);
 
+  // Función para encontrar la tienda por id
   function findStoreById(storeId) {
-    return storesArray.find((store) => store.storeID === storeId);
+    return storesArray.find((store) => store.storeID === storeId); // Devuelve la tienda con el id correspondiente
   }
 
+  // Función para reemplazar la descripción
   const replaceDescription = (description) => {
+    // Si la descripción contiene el patrón especificado, reemplaza el patrón por el grupo de captura, "(.+)", referenciandolo con "$1"
+    // Es decir, (.+) == $1
     return description.replace(/<br \/>\n(.+)<br \/>\n/g, "<h5 className='mt-4 mb-3'>$1</h5>");
   };
 
+  // Función para renderizar el rating pasandole el título y el rating
   function renderProgressBar(title, rating) {
+    // Switch para el título
     switch (title) {
+      // Si el título es "recommended"
       case "recommended":
         return <ProgressBar variant="success" now={rating.percent} key={rating.id} />;
+      // Si el título es "exceptional"
       case "exceptional":
         return <ProgressBar variant="info" now={rating.percent} key={rating.id} />;
+      // Si el título es "meh"
       case "meh":
         return <ProgressBar variant="warning" now={rating.percent} className="text-black" key={rating.id} />;
+      // Si el título es "skip"
       case "skip":
         return <ProgressBar variant="danger" now={rating.percent} key={rating.id} />;
+      // Por defecto
       default:
-        return <ProgressBar label={`It has no ratings`} key={rating.id} />;
+        return <ProgressBar label={`It has no ratings`} className="fw-bold text-black" key={rating.id} />;
     }
   }
 
+  // Función para renderizar el porcentaje los ratings pasandole el título y el rating
   function renderRatings(title, rating) {
+    // Switch para el título
     switch (title) {
+      // Si el título es "recommended"
       case "recommended":
         return (
           <div className="col-md-3 col-sm-4 col-6 d-flex align-items-center justify-content-center mb-3" key={rating.id}>
@@ -83,6 +105,7 @@ export default function GameDetails() {
             </div>
           </div>
         );
+      // Si el título es "exceptional"
       case "exceptional":
         return (
           <div className="col-md-3 col-sm-4 col-6 d-flex align-items-center justify-content-center mb-3" key={rating.id}>
@@ -95,6 +118,7 @@ export default function GameDetails() {
             </div>
           </div>
         );
+      // Si el título es "meh"
       case "meh":
         return (
           <div className="col-md-3 col-sm-4 col-6 d-flex align-items-center justify-content-center mb-3" key={rating.id}>
@@ -107,6 +131,7 @@ export default function GameDetails() {
             </div>
           </div>
         );
+      // Si el título es "skip"
       case "skip":
         return (
           <div className="col-md-3 col-sm-4 col-6 d-flex align-items-center justify-content-center mb-3" key={rating.id}>
@@ -119,6 +144,7 @@ export default function GameDetails() {
             </div>
           </div>
         );
+      // Por defecto
       default:
         return <></>;
     }
@@ -128,7 +154,7 @@ export default function GameDetails() {
     <>
       <div className="pt-4">
         <div
-          className="gameDetails__bg-presentation-overlay d-flex align-items-center justify-content-center"
+          className="gameDetails__bg-presentation--overlay d-flex align-items-center justify-content-center"
           style={{
             backgroundImage: moreGameData
               ? `linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('${moreGameData.background_image}')`
@@ -139,7 +165,7 @@ export default function GameDetails() {
             backgroundPosition: "center",
           }}>
           <div className="text-white">
-            <h1 className="pt-5 fw-bold mb-5">{gameData && gameData.info ? gameData.info.title : "Loading..."}</h1>
+            <h1 className="pt-5 fw-bold mb-5">{gameData && gameData.info ? gameData.info.title : error}</h1>
           </div>
         </div>
       </div>
@@ -150,6 +176,7 @@ export default function GameDetails() {
             <Tab eventKey="offers" title="Offers" className="text-white">
               <div>
                 <div className="row">
+                  {/* Si gameData tiene datos, mapeamos la lista de juegos */}
                   {gameData &&
                     gameData.deals &&
                     gameData.deals.map((deal) => (
@@ -209,62 +236,79 @@ export default function GameDetails() {
               </div>
             </Tab>
             <Tab eventKey="about" title="About" className="text-white">
-              <h2 className="mb-4">About "{gameData && gameData.info ? gameData.info.title : "Loading..."}"</h2>
-              <img src={moreGameData ? moreGameData.background_image : "Loading..."} alt="" className="img-fluid mb-3 w-100" />
-              {moreGameData && moreGameData.description && (
-                <div className="bg-black p-4" dangerouslySetInnerHTML={{ __html: replaceDescription(moreGameData.description) }} />
+              {/* Si gameData y moreGameData tienen datos */}
+              {gameData && moreGameData ? (
+                <>
+                  <h2 className="mb-4">About "{gameData && gameData.info ? gameData.info.title : "Loading..."}"</h2>
+                  <img src={moreGameData ? moreGameData.background_image : "Loading..."} alt="" className="img-fluid mb-3 w-100" />
+                  {moreGameData && moreGameData.description && (
+                    <div className="bg-black p-4" dangerouslySetInnerHTML={{ __html: replaceDescription(moreGameData.description) }} />
+                  )}
+
+                  <h2 className="mt-5 mb-4">Rating</h2>
+                  <ProgressBar>
+                    {/* Si moreGameData tiene ratings, lo mapeamos y ejecutamos la funcion de renderProgressBar */}
+                    {moreGameData && moreGameData.ratings && moreGameData.ratings.map((rating) => renderProgressBar(rating.title, rating))}
+                  </ProgressBar>
+                  <div className="mt-3 row justify-content-center">
+                    {/* Si moreGameData tiene ratings, lo mapeamos y ejecutamos la funcion de renderRatings */}
+                    {moreGameData && moreGameData.ratings && moreGameData.ratings.map((rating) => renderRatings(rating.title, rating))}
+                  </div>
+
+                  <h2 className="mt-5 mb-4">PC Requirements</h2>
+                  <div className="bg-black p-4">
+                    <div>
+                      {/* Si moreGameData tiene datos de platforms, lo mapeamos, y solo sacaremos los requisitos minimos que sean de pc */}
+                      {moreGameData &&
+                        moreGameData.platforms &&
+                        moreGameData.platforms.map(
+                          (platform) =>
+                            platform.platform.name === "PC" &&
+                            platform.requirements &&
+                            platform.requirements.minimum &&
+                            platform.requirements.minimum.split("\n").map((line, index) => {
+                              // Mapeamos el texto y lo separamos por saltos de linea
+                              const words = line.split(" "); // Separamos las palabras por espacios
+                              return (
+                                // Devolvemos un parrafo que si la primera palabra es "Minimum:" la pone en negrita y mas grande
+                                // Y las demas palabras las une con un espacio
+                                <p key={index}>
+                                  {words[0] === "Minimum:" ? <span className="fs-4 fw-bold">{words[0]}</span> : words[0]}
+                                  {" " + words.slice(1).join(" ")}
+                                </p>
+                              );
+                            })
+                        )}
+                    </div>
+
+                    <div className="mt-5">
+                      {/* Si moreGameData tiene datos de platforms, lo mapeamos, y solo sacaremos los requisitos recomendados que sean de pc */}
+                      {moreGameData &&
+                        moreGameData.platforms &&
+                        moreGameData.platforms.map(
+                          (platform) =>
+                            platform.platform.name === "PC" &&
+                            platform.requirements &&
+                            platform.requirements.recommended &&
+                            platform.requirements.recommended.split("\n").map((line, index) => {
+                              // Mapeamos el texto y lo separamos por saltos de linea
+                              const words = line.split(" ");
+                              return (
+                                // Devolvemos un parrafo que si la primera palabra es "Recommended:" la pone en negrita y mas grande
+                                // Y las demas palabras las une con un espacio
+                                <p key={index}>
+                                  {words[0] === "Recommended:" ? <span className="fs-4 fw-bold">{words[0]}</span> : words[0]}
+                                  {" " + words.slice(1).join(" ")}
+                                </p>
+                              );
+                            })
+                        )}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="text-white">{error}</div>
               )}
-
-              <h2 className="mt-5 mb-4">Rating</h2>
-              <ProgressBar>
-                {moreGameData && moreGameData.ratings && moreGameData.ratings.map((rating) => renderProgressBar(rating.title, rating))}
-              </ProgressBar>
-              <div className="mt-3 row justify-content-center">
-                {moreGameData && moreGameData.ratings && moreGameData.ratings.map((rating) => renderRatings(rating.title, rating))}
-              </div>
-
-              <h2 className="mt-5 mb-4">PC Requirements</h2>
-              <div className="bg-black p-4">
-                <div>
-                  {moreGameData &&
-                    moreGameData.platforms &&
-                    moreGameData.platforms.map(
-                      (platform) =>
-                        platform.platform.name === "PC" &&
-                        platform.requirements &&
-                        platform.requirements.minimum &&
-                        platform.requirements.minimum.split("\n").map((line, index) => {
-                          const words = line.split(" ");
-                          return (
-                            <p key={index}>
-                              {words[0] === "Minimum:" ? <span className="fs-4 fw-bold">{words[0]}</span> : words[0]}
-                              {" " + words.slice(1).join(" ")}
-                            </p>
-                          );
-                        })
-                    )}
-                </div>
-
-                <div className="mt-5">
-                  {moreGameData &&
-                    moreGameData.platforms &&
-                    moreGameData.platforms.map(
-                      (platform) =>
-                        platform.platform.name === "PC" &&
-                        platform.requirements &&
-                        platform.requirements.recommended &&
-                        platform.requirements.recommended.split("\n").map((line, index) => {
-                          const words = line.split(" ");
-                          return (
-                            <p key={index}>
-                              {words[0] === "Recommended:" ? <span className="fs-4 fw-bold">{words[0]}</span> : words[0]}
-                              {" " + words.slice(1).join(" ")}
-                            </p>
-                          );
-                        })
-                    )}
-                </div>
-              </div>
             </Tab>
           </Tabs>
         </div>
@@ -299,6 +343,7 @@ export default function GameDetails() {
                 </div>
                 <div className="col-lg-7 col-md-8 col-sm-8 col-8">
                   <span>
+                    {/* En caso de que moreGameData tenga diferentes plataformas, los mapea por nombre y los une con ", " */}
                     {moreGameData && moreGameData.parent_platforms
                       ? moreGameData.parent_platforms.map((platform) => platform.platform.name).join(", ")
                       : ""}
@@ -312,6 +357,7 @@ export default function GameDetails() {
                 </div>
                 <div className="col-lg-8 col-md-8 col-sm-8 col-8 ps-0">
                   <div className="card-text d-flex flex-wrap">
+                    {/* En caso de que moreGameData tenga generos, lo mapea y muestra todos los generos que tenga */}
                     {moreGameData && moreGameData.genres
                       ? moreGameData.genres.map((genre) => (
                           <div className="btn btn-dark text-white mx-1 mb-2 pe-none p-2" key={genre.id}>
@@ -326,6 +372,8 @@ export default function GameDetails() {
           </div>
         </div>
       </div>
+      {/* Contenedor de notificaciones Toast */}
+      <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );
 }

@@ -156,7 +156,7 @@ export default function SearchGame() {
         </div> */}
         <SearchGameListCards games={relatedGames} isLoading={isLoading} />
       </div>
-      <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
+      <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );
 }

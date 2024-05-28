@@ -1,8 +1,11 @@
+// Importa las librerías de react y react-bootstrap
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+// Importa el componente HomeGameCard
 import HomeGameCard from "./HomeGameCard";
 
+// Define y exporta la función CarouselDeals
 export default function CarouselDeals({ uniqueGames }) {
   return (
     <Carousel
@@ -59,6 +62,7 @@ export default function CarouselDeals({ uniqueGames }) {
       swipeable>
       {uniqueGames &&
         uniqueGames.map((game) => {
+          // Mapea uniqueGames y para cada juego crea un componente HomeGameCard utilizando gameID como clave
           return <HomeGameCard game={game} key={game.gameID} />;
         })}
     </Carousel>

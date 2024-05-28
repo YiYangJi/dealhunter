@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
-import "./About.css";
+import React, { useEffect } from "react"; // Importa las librerías de react
+import "./About.css"; // Importa el archivo de css
 
+// Importa las librerías de react-toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// Exporta la función About
 export default function About() {
+  // Utiliza useEffect para que al cargar la página, se posicione en la parte superior
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, []); // El array vacío indica que solo se ejecutará una vez
 
   return (
     <>
-      <div className="about__bg-presentation-overlay pt-4 d-flex align-items-center justify-content-center">
+      <div className="about__bg-presentation--overlay pt-4 d-flex align-items-center justify-content-center">
         <div className="text-white">
           <h1 className="pt-5 fw-bold mb-5 about__h1--title">About</h1>
         </div>
@@ -51,8 +54,8 @@ export default function About() {
 
         <div className="row justify-content-center">
           <div className="col-lg-4 col-sm-6 mb-4">
-            <a href="https://www.facebook.com/login/" className="text-decoration-none">
-              <div className="card bg-dark border-0 text-center text-white">
+            <a href="https://www.facebook.com/login/" target="_blank" rel="noreferrer" className="text-decoration-none">
+              <div className="about__card bg-dark border-0 text-center text-white">
                 <i className="fa-brands fa-facebook fa-5x fa-bounce-hover pt-3"></i>
                 <div className="card-body">
                   <h4 className="card-title pb-4">Facebook</h4>
@@ -62,8 +65,12 @@ export default function About() {
             </a>
           </div>
           <div className="col-lg-4 col-sm-6 mb-4">
-            <a href="#" className="text-decoration-none">
-              <div className="card bg-dark border-0 text-center text-white">
+            <a
+              href="https://discord.com/oauth2/authorize?client_id=1220283733400092692"
+              target="_blank"
+              rel="noreferrer"
+              className="text-decoration-none">
+              <div className="about__card bg-dark border-0 text-center text-white">
                 <i className="fa-brands fa-discord fa-5x fa-bounce-hover pt-3"></i>
                 <div className="card-body">
                   <h4 className="card-title pb-4">Discord</h4>
@@ -76,8 +83,8 @@ export default function About() {
             </a>
           </div>
           <div className="col-lg-4 col-sm-6 mb-4">
-            <a href="https://github.com/YiYangJi/dealhunter" className="text-decoration-none">
-              <div className="card bg-dark border-0 text-center text-white">
+            <a href="https://github.com/YiYangJi/dealhunter" target="_blank" rel="noreferrer" className="text-decoration-none">
+              <div className="about__card bg-dark border-0 text-center text-white">
                 <i className="fa-brands fa-github fa-5x fa-bounce-hover pt-3"></i>
                 <div className="card-body">
                   <h4 className="card-title pb-4">GitHub</h4>
@@ -90,6 +97,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      {/* Contenedor de notificaciones Toast */}
       <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );

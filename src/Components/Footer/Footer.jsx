@@ -1,12 +1,22 @@
+// Importa la libreria de React y Link de react-router-dom
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Define y exporta la funcion Footer
 export default function Footer() {
   return (
     <>
       <div className="container">
         <section>
           <div className="row text-center d-flex justify-content-center pt-4">
+            <div className="col-md-2">
+              <h6 className="text-uppercase font-weight-bold">
+                <Link to={"/"} className="text-white">
+                  Home
+                </Link>
+              </h6>
+            </div>
+
             <div className="col-md-2">
               <h6 className="text-uppercase font-weight-bold">
                 <Link to={"/about"} className="text-white">
@@ -19,14 +29,6 @@ export default function Footer() {
               <h6 className="text-uppercase font-weight-bold">
                 <Link to={"/new deals"} className="text-white">
                   New Deals
-                </Link>
-              </h6>
-            </div>
-
-            <div className="col-md-2">
-              <h6 className="text-uppercase font-weight-bold">
-                <Link to={"/interesting titles"} className="text-white">
-                  Interesting titles
                 </Link>
               </h6>
             </div>
@@ -67,10 +69,10 @@ export default function Footer() {
         </section>
 
         <section className="text-center mb-4">
-          <a href="https://www.facebook.com/login/" className="text-white me-4">
+          <a href="https://www.facebook.com/login/" target="_blank" rel="noreferrer" className="text-white me-4">
             <i className="fab fa-facebook fa-2x"></i>
           </a>
-          <a href="#" className="text-white me-4">
+          <a href="https://discord.gg/y3XRkwsC" target="_blank" rel="noreferrer" className="text-white me-4">
             <i className="fab fa-discord fa-2x"></i>
           </a>
           <a href="https://github.com/YiYangJi" target="_blank" rel="noreferrer" className="text-white me-4">

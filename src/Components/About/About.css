@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.about__bg-presentation-overlay {
+.about__bg-presentation--overlay {
   background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("/public/img/about.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -48,4 +48,12 @@
   .about__img2--rotate {
     transform: none;
   }
+}
+
+.fa-bounce-hover {
+  transition: transform 0.3s ease;
+}
+
+.about__card:hover .fa-bounce-hover {
+  transform: scale(1.3);
 }

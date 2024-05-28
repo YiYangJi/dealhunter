@@ -357,7 +357,7 @@ export default function InterestingTitles() {
           </button>
         </div>
       </div>
-      <ToastContainer position="bottom-center" pauseOnFocusLoss={false} />
+      <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );
 }

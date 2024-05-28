@@ -1,7 +1,10 @@
+// Importa las librerías de react
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Define y exporta la función CardNewDeals
 export default function CardNewDeals({ newDeals }) {
+  // Si newDeals no está definido o no es un array, muestra un mensaje de "Loading..."
   if (!newDeals[0] || !Array.isArray(newDeals[0])) {
     return <div>Loading...</div>;
   }
@@ -9,6 +12,7 @@ export default function CardNewDeals({ newDeals }) {
   return (
     <>
       {newDeals[0].map((game, index) => (
+        // Mapea newDeals y para cada juego crea un enlace a la página del juego utilizando su gameID como clave
         <Link to={`/game/${game.gameID}`} className="text-decoration-none" key={game.gameID}>
           <div
             className="card newDeals__card bg-black text-light rounded-0 mx-auto"
