@@ -1,16 +1,19 @@
+// Importa la libreria de React
 import React from "react";
-import "./Loading.css";
 
+import "./Loading.css"; // Importa el archivo de estilos Loading.css
+
+// Define y exporta la función Loading
 export default function Loading() {
   return (
     <div className="d-flex justify-content-center align-items-center h-100 vh-100">
-      <div className="loader-wrapper">
-        <div className="packman"></div>
-        <div className="dots">
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
+      <div className="loading__loader-wrapper">
+        <div className="loading__packman"></div>
+        <div className="loading__dots">
+          <div className="loading__dot"></div>
+          <div className="loading__dot"></div>
+          <div className="loading__dot"></div>
+          <div className="loading__dot"></div>
         </div>
       </div>
     </div>

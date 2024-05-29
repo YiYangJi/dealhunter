@@ -1,5 +1,5 @@
 // Importa funciones de React para manejar efectos, referencias y estado
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Importa funciones asíncronas para obtener datos sobre las ofertas
 import { getBestDeals, getListDeals, getNewDeals } from "../../Services/AsyncFunctions";
 // Importa los estilos CSS para este componente

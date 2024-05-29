@@ -1,7 +1,7 @@
 /* ///////////////////////////////////// */
 /* RANGE SLIDER CSS */
 /* ///////////////////////////////////// */
-.slider {
+.listDeals_slider {
   --slider-width: 100%;
   --slider-height: 6px;
   --slider-bg: rgb(82, 82, 82);
@@ -13,7 +13,7 @@
   --icon-size: 25px;
 }
 
-.slider .level {
+.listDeals_slider .level {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -28,7 +28,7 @@
   cursor: inherit;
 }
 
-.slider .level::-webkit-slider-thumb {
+.listDeals_slider .level::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 0;
   height: 0;
@@ -36,7 +36,7 @@
   box-shadow: -200px 0 0 200px var(--level-color);
 }
 
-.slider:hover .level {
+.listDeals_slider:hover .level {
   height: calc(var(--slider-height) * 2);
 }
 
@@ -101,6 +101,7 @@
 /* ///////////////////////////////////// */
 /* RADIO BUTTON CSS */
 /* ///////////////////////////////////// */
+
 
 
 /* ///////////////////////////////////// */

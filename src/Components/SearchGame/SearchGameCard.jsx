@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getInfoGame, searchGame } from "../../Services/AsyncFunctions";
 import { Link } from "react-router-dom";
 
+import "./SearchGameCard.css";
+
 export default function SearchGameCard({ game }) {
   const [image, setImage] = useState(null);
   const [infoGame, setInfoGame] = useState(null);
@@ -49,7 +51,7 @@ export default function SearchGameCard({ game }) {
             <div className="col-md-4">
               <img
                 src={image && image.background_image ? image.background_image : backupImage}
-                className="img-fluid rounded-start interestingTitles__img--height w-100"
+                className="img-fluid rounded-start searchGameCard__img--height w-100"
                 alt={infoGame && infoGame.info ? infoGame.info.title : ""}
                 onError={handleError}
               />
@@ -68,10 +70,10 @@ export default function SearchGameCard({ game }) {
                     </p>
                     <div className="container p-0 pt-3">
                       <div className="d-flex justify-content-between align-items-center">
-                        <div className="ratings">
+                        <div className="searchGameCard__ratings">
                           {image && image.rating && image.rating > 0
                             ? Array.from({ length: Math.round(image.rating) }, (_, i) => (
-                                <i key={i} className="fa fa-star rating-color"></i>
+                                <i key={i} className="fa fa-star searchGameCard__rating--color"></i>
                               ))
                             : Array.from({ length: 5 }, (_, i) => <i key={i} className="fa fa-star"></i>)}
                           {image && image.rating && image.rating < 5 && image.rating > 0
@@ -84,7 +86,7 @@ export default function SearchGameCard({ game }) {
                     </div>
                   </div>
                   <div className="col-xl-5 col-lg-4 col-md-4 col-sm-5 col-12 text-end">
-                    <p className="card-text interestingTitles__p--salePrice fw-bold">
+                    <p className="card-text searchGameCard__p--salePrice fw-bold">
                       ~{infoGame && infoGame.deals && infoGame.deals[0] ? infoGame.deals[0].price : ""}€
                     </p>
                     <p className="card-text text-secondary d-sm-block d-none">

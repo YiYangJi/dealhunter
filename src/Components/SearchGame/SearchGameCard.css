@@ -1,31 +1,33 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.gameCard__img--height {
+.searchGameCard__img--height {
   height: 176px;
   width: 270px;
   object-fit: cover;
 }
 
-.gameCard__p--salePrice {
+.searchGameCard__p--salePrice {
   font-size: 1.7em;
 }
 
 /* ///////////////////////////////////////////////// */
 /* STAR RATING CSS */
 /* ///////////////////////////////////////////////// */
-.gameCard__ratings {
+.searchGameCard__ratings {
   margin-right: 10px;
 }
 
-.gameCard__ratings i {
+.searchGameCard__ratings i {
 
   color: #cecece;
   font-size: 15px;
 }
 
-.gameCard__rating--color {
+.searchGameCard__rating--color {
   color: #fbc634 !important;
 }
 

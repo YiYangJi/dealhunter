@@ -1,3 +1,4 @@
+// Define las URLs base para las diferentes peticiones de la API
 const freeGames = "https://www.cheapshark.com/api/1.0/deals?upperPrice=0";
 const listOfGames = "https://www.cheapshark.com/api/1.0/games";
 const listDeals = "https://www.cheapshark.com/api/1.0/deals";

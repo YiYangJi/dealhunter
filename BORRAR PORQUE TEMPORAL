@@ -6,19 +6,25 @@ Footer -----------------------> CHECK
 <!--  -->
 GameDetails -----------------------> CHECK
 <!--  -->
-Header
+Header -----------------------> CHECK
 <!--  -->
 Home -----------------------> CHECK
 <!--  -->
-ListDeals
+ListDeals -----------------------> CHECK
 <!--  -->
-Loading
+Loading -----------------------> CHECK
 <!--  -->
-SearchGame
+SearchGame -----------------------> CHECK
 <!--  -->
 Services
 <!--  -->
 <!--  -->
-App
+App -----------------------> CHECK
 <!--  -->
-index
+index -----------------------> CHECK
+
+<!--  -->
+_____________________________________________________
+<!--  -->
+
+HACER LA PÁGINA DE ERROR 404, NO ENCONTRADO COMO COMPONENTE

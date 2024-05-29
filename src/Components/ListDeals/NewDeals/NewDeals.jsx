@@ -1,20 +1,27 @@
+// Importa las librerías de React
 import React, { useEffect, useRef, useState } from "react";
-import "./NewDeals.css";
-import { getAllNewDeals, getAllNewDealsFilter } from "../../../Services/AsyncFunctions";
-import { Tooltip, OverlayTrigger } from "react-bootstrap";
-import ListCards from "../ListCards";
-import Loading from "../../Loading/Loading";
+
+import "./NewDeals.css"; // Importa el archivo css NewDeals.css
+import { getAllNewDeals, getAllNewDealsFilter } from "../../../Services/AsyncFunctions"; // Importa las funciones getAllNewDeals y getAllNewDealsFilter
+import { Tooltip, OverlayTrigger } from "react-bootstrap"; // Importa las librerías de react-bootstrap
+import ListCards from "../ListCards"; // Importa el componente ListCards
+import Loading from "../../Loading/Loading"; // Importa el componente Loading
+import "../Filter.css"; // Importa el archivo css para los filtros
+
+// Importa las librerías de react-toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// Define y exporta la función InterestingTitles
 export default function InterestingTitles() {
-  const [InterestingGames, setInterestingGames] = useState([]);
-  const [uniqueInterestingGames, setUniqueInterestingGames] = useState([]);
+  const [newDeals, setNewDeals] = useState([]); // Define useState de newDeals
+  const [uniqueNewDeals, setUniqueNewDeals] = useState([]); // Define useState de uniqueNewDeals
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(0); // Define useState de page
 
+  // Define los useState para los filtros
   const [priceLimit, setPriceLimit] = useState(50);
-  const [filteredInterestingGames, setFilteredInterestingGames] = useState([]);
+  const [filteredNewDeals, setFilteredNewDeals] = useState([]);
   const [radioSelectedOption, setRadioSelectedOption] = useState("2500");
   const [checkboxes, setCheckboxes] = useState({
     checkbox1: false,
@@ -22,17 +29,20 @@ export default function InterestingTitles() {
     checkbox3: false,
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-  const toastDisplayedRef = useRef(false);
+  const [isLoading, setIsLoading] = useState(false); // Define el useState isLoading
+  const toastDisplayedRef = useRef(false); // Define el useRef toastDisplayedRef
 
+  // Define el useEffect
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Cuando se renderiza el componente, se hace scroll hacia arriba
 
+    // Define una función asincrona llamada fetchListDeals
     const fetchListDeals = async () => {
-      const promises = [];
-      promises.push(getAllNewDeals(page));
-      const response = await Promise.all(promises);
+      const promises = []; // Define un array de promises
+      promises.push(getAllNewDeals(page)); // Añade a promises la promise de getAllNewDeals con el valor de page
+      const response = await Promise.all(promises); // Espera a que se resuelvan todas las promises
 
+      // Si la respuesta está vacía, devuelve error o contiene un error de límite de peticiones
       if (
         response[0] &&
         !response[0].ok &&
@@ -40,60 +50,76 @@ export default function InterestingTitles() {
         response[0].error &&
         response[0].error.includes("You are being temporarily blocked due to rate limiting")
       ) {
+        // Si no se ha mostrado el toast
         if (!toastDisplayedRef.current) {
+          // Muestra un toast con el mensaje de error
           toast.error(<div className="text-center">You have made too many requests. Please try again later.</div>);
-          toastDisplayedRef.current = true;
+          toastDisplayedRef.current = true; // Cambia el valor de toastDisplayedRef a true
         }
       }
 
-      const data = [];
+      const data = []; // Define un array data
+      // Para cada respuesta
       response.forEach((res) => {
-        data.push(res);
+        data.push(res); // Añade la respuesta a data
       });
 
-      setInterestingGames(data);
+      setNewDeals(data); // Establece el valor de InterestingGames a data
 
+      // Filtra los juegos únicos con los parametros de juego, índice y el array completo (self)
+      // Se busca en el array completo el primer elemento que tenga el mismo id que el juego actual
+      // Luego el resultado (indice de self) se compara con el indice actual, si es igual, se añade al array de juegos únicos
       let unique =
-        data[0] && !data[0].error ? data[0].filter((game, index, self) => index === self.findIndex((t) => t.gameID === game.gameID)) : [];
-
-      setUniqueInterestingGames(unique);
-
-      handleFilter();
-    };
-
-    fetchListDeals();
-  }, [page]);
-
-  useEffect(() => {
-    if (InterestingGames) {
-      let uniqueFilter =
-        InterestingGames[0] && !InterestingGames[0].error
-          ? InterestingGames[0].filter((game, index, self) => index === self.findIndex((t) => t.gameID === game.gameID))
+        data[0] && !data[0].error
+          ? data[0].filter((game, index, self) => index === self.findIndex((element) => element.gameID === game.gameID))
           : [];
 
-      setFilteredInterestingGames(uniqueFilter);
+      setUniqueNewDeals(unique); // Establece el valor de uniqueInterestingGames a los juegos únicos
 
-      console.log(filteredInterestingGames);
+      handleFilter(); // Ejecuta la función handleFilter
+    };
+
+    fetchListDeals(); // Ejecuta la función fetchListDeals
+  }, [page]); // Se ejecuta cuando page cambia
+
+  // Define el useEffect
+  useEffect(() => {
+    // Si newDeals contiene datos
+    if (newDeals) {
+      // Filtra los juegos únicos con los parametros de juego, índice y el array completo (self)
+      // Se busca en el array completo el primer elemento que tenga el mismo id que el juego actual
+      // Luego el resultado (indice de self) se compara con el indice actual, si es igual, se añade al array de juegos únicos
+      let uniqueFilter =
+        newDeals[0] && !newDeals[0].error
+          ? newDeals[0].filter((game, index, self) => index === self.findIndex((element) => element.gameID === game.gameID))
+          : [];
+
+      setFilteredNewDeals(uniqueFilter); // Establece el valor de filteredNewDeals a los juegos únicos filtrados
     }
-  }, [InterestingGames]);
+  }, [newDeals]); // Se ejecuta cuando newDeals cambia
 
   /////////////////////////////////////////////
   // PAGINATION LOGIC
   /////////////////////////////////////////////
-
+  // Define una función handleNextPage para la paginación
   const handleNextPage = () => {
-    setPage((prevPage) => prevPage + 1);
+    setPage((prevPage) => prevPage + 1); // Aumenta el valor de page en 1
   };
 
+  // Define una función handlePreviousPage para la paginación
   const handlePreviousPage = () => {
-    setPage((prevPage) => Math.max(prevPage - 1, 0)); // No permitir que la página sea menor a 0
+    setPage((prevPage) => Math.max(prevPage - 1, 0)); // Disminuye el valor de page en 1, sin que sea menor a 0
   };
 
+  /////////////////////////////////////////////
   // FILTERS LOGIC
-
+  /////////////////////////////////////////////
+  // Define una función handleFilter para los filtros
   const handleFilter = () => {
+    // Define una función asíncrona
     const fetchListDealsFilter = async () => {
-      const promises = [];
+      const promises = []; // Define un array de promises
+      // Añade a promises el resultado de getAllNewDealsFilter con los valores de priceLimit, radioSelectedOption, los valores de los checkboxes y la página
       promises.push(
         getAllNewDealsFilter(
           priceLimit,
@@ -104,42 +130,47 @@ export default function InterestingTitles() {
           page
         )
       );
-      const response = await Promise.all(promises);
+      const response = await Promise.all(promises); // Espera a que se resuelvan todas las promises
 
-      const data = [];
+      const data = []; // Define un array data4
+      // Para cada respuesta
       response.forEach((res) => {
-        data.push(res);
+        data.push(res); // Añade la respuesta a data
       });
 
-      console.log(data);
-
-      setInterestingGames(data);
+      setNewDeals(data); // Establece el valor de InterestingGames a los juegos filtrados
     };
 
+    // Si hay juegos únicos, si hay un radio seleccionado o si alguno de los checkboxes está seleccionado
     if (
-      (uniqueInterestingGames && uniqueInterestingGames.length > 0) ||
+      (uniqueNewDeals && uniqueNewDeals.length > 0) ||
       radioSelectedOption ||
       Object.values(checkboxes).some((checkbox) => checkbox === true)
     ) {
-      fetchListDealsFilter();
+      fetchListDealsFilter(); // Ejecuta la función fetchListDealsFilter
     }
   };
 
+  // Define una función handleRadioOptionChange para los radio buttons
   const handleRadioOptionChange = (event) => {
-    setRadioSelectedOption(event.target.value);
+    setRadioSelectedOption(event.target.value); // Establece el valor de radioSelectedOption al valor del radio seleccionado
   };
 
+  // Define una función handleCheckboxChange para los checkboxes
   const handleCheckboxChange = (event) => {
+    // Actualiza el valor del checkbox seleccionado
     setCheckboxes({
       ...checkboxes,
       [event.target.name]: event.target.checked,
     });
   };
 
+  // Define una función cleanFilter para limpiar los filtros
   const cleanFilter = () => {
-    setFilteredInterestingGames(uniqueInterestingGames);
-    setPriceLimit(50);
-    setRadioSelectedOption("2500");
+    setFilteredNewDeals(uniqueNewDeals); // Establece el valor de filteredNewDeals a los juegos únicos
+    setPriceLimit(50); // Establece el valor de priceLimit a 50
+    setRadioSelectedOption("2500"); // Establece el valor de radioSelectedOption a 2500
+    // Establece el valor de los checkboxes a false
     setCheckboxes({
       checkbox1: false,
       checkbox2: false,
@@ -164,7 +195,7 @@ export default function InterestingTitles() {
             </div>
             <div className="my-4">
               <h4>Price</h4>
-              <label className="slider w-100 text-center">
+              <label className="listDeals_slider w-100 text-center">
                 <OverlayTrigger placement="right" overlay={<Tooltip id={`tooltip-right`}>50 acts the same as no limit</Tooltip>}>
                   <span>
                     <input
@@ -174,8 +205,8 @@ export default function InterestingTitles() {
                       className="level"
                       value={priceLimit}
                       onInput={(event) => {
-                        event.target.nextElementSibling.value = event.target.value;
-                        setPriceLimit(event.target.value);
+                        event.target.nextElementSibling.value = event.target.value; // Iguala el valor del output al valor del input
+                        setPriceLimit(event.target.value); // Establece el valor de priceLimit al valor del input
                       }}
                     />
                     Limit Price: <output>{priceLimit}</output>€
@@ -196,7 +227,7 @@ export default function InterestingTitles() {
                     type="radio"
                     value="2500"
                     checked={radioSelectedOption === "2500"}
-                    onChange={handleRadioOptionChange}
+                    onChange={handleRadioOptionChange} // Cuando cambia el radio button, ejecuta la función handleRadioOptionChange
                   />
                   <label htmlFor="radio2" className="radio-button__label">
                     <span className="radio-button__custom"></span>
@@ -211,7 +242,7 @@ export default function InterestingTitles() {
                     type="radio"
                     value="24"
                     checked={radioSelectedOption === "24"}
-                    onChange={handleRadioOptionChange}
+                    onChange={handleRadioOptionChange} // Cuando cambia el radio button, ejecuta la función handleRadioOptionChange
                   />
                   <label htmlFor="radio1" className="radio-button__label">
                     <span className="radio-button__custom"></span>
@@ -226,7 +257,7 @@ export default function InterestingTitles() {
                     type="radio"
                     value="168"
                     checked={radioSelectedOption === "168"}
-                    onChange={handleRadioOptionChange}
+                    onChange={handleRadioOptionChange} // Cuando cambia el radio button, ejecuta la función handleRadioOptionChange
                   />
                   <label htmlFor="radio3" className="radio-button__label">
                     <span className="radio-button__custom"></span>
@@ -241,7 +272,7 @@ export default function InterestingTitles() {
                     type="radio"
                     value="720"
                     checked={radioSelectedOption === "720"}
-                    onChange={handleRadioOptionChange}
+                    onChange={handleRadioOptionChange} // Cuando cambia el radio button, ejecuta la función handleRadioOptionChange
                   />
                   <label htmlFor="radio4" className="radio-button__label">
                     <span className="radio-button__custom"></span>
@@ -259,7 +290,7 @@ export default function InterestingTitles() {
                   className="inp-cbx"
                   name="checkbox1"
                   checked={checkboxes.checkbox1}
-                  onChange={handleCheckboxChange}
+                  onChange={handleCheckboxChange} // Cuando cambia el checkbox, ejecuta la función handleCheckboxChange
                 />
                 <label htmlFor="aaa" className="cbx ps-0 pb-1">
                   <span>
@@ -285,7 +316,7 @@ export default function InterestingTitles() {
                   className="inp-cbx"
                   name="checkbox2"
                   checked={checkboxes.checkbox2}
-                  onChange={handleCheckboxChange}
+                  onChange={handleCheckboxChange} // Cuando cambia el checkbox, ejecuta la función handleCheckboxChange
                 />
                 <label htmlFor="steamWorks" className="cbx ps-0 pb-1">
                   <span>
@@ -312,7 +343,7 @@ export default function InterestingTitles() {
                   className="inp-cbx"
                   name="checkbox3"
                   checked={checkboxes.checkbox3}
-                  onChange={handleCheckboxChange}
+                  onChange={handleCheckboxChange} // Cuando cambia el checkbox, ejecuta la función handleCheckboxChange
                 />
                 <label htmlFor="onsale" className="cbx ps-0 pb-1">
                   <span>
@@ -333,9 +364,11 @@ export default function InterestingTitles() {
               </div>
             </div>
             <div className="text-center mt-3">
+              {/* Cuando se hace click en el botón, ejecuta la función cleanFilter */}
               <button className="btn btn-secondary me-xl-3 me-md-2 me-3" onClick={cleanFilter}>
                 Clean filters
               </button>
+              {/* Cuando se hace click en el botón, ejecuta la función handleFilter */}
               <button className="btn btn-primary" onClick={handleFilter}>
                 Filter
               </button>
@@ -343,8 +376,10 @@ export default function InterestingTitles() {
           </div>
         </div>
         <div className="col-xl-9 col-lg-9 col-md-12 col-12">
+          {/* Si isLoading es true, ejecuta el componente Loading */}
           {isLoading && <Loading />}
-          {filteredInterestingGames && <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />}
+          {/* Si filteredInterestingGames existe, ejecuta el componente ListCards con los juegos filtrados, pasándole setIsLoading como prop */}
+          {filteredNewDeals && <ListCards filteredGames={filteredNewDeals} setIsLoading={setIsLoading} />}
         </div>
         <div className="d-flex justify-content-center mt-3">
           <button class="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
@@ -355,6 +390,7 @@ export default function InterestingTitles() {
           </button>
         </div>
       </div>
+      {/* Renderiza el ToastContainer para las notificaciones */}
       <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );

@@ -1,3 +1,4 @@
+// Define y exporta un array de plataforma de juegos
 export const storesArray = [
   { storeID: "1", storeName: "Steam", banner: "1.png" },
   { storeID: "2", storeName: "GamersGate", banner: "2.png" },

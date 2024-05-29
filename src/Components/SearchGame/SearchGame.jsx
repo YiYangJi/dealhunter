@@ -1,161 +1,94 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getListGames } from "../../Services/AsyncFunctions";
-import SearchGameListCards from "./SearchGameListCards";
+// Importa las librerias de React
+import React, { useEffect, useState } from "react";
 
+import { useLocation } from "react-router-dom"; // Importa la libreria useLocation de react-router-dom
+import { getListGames } from "../../Services/AsyncFunctions"; // Importa las funciones asíncronas
+import SearchGameListCards from "./SearchGameListCards"; // Importa el componente SearchGameListCards
+
+// Importa las librerias de React
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import "./SearchGame.css";
-
+// Define y exporta la función SearchGame
 export default function SearchGame() {
-  const location = useLocation();
-  const nameGame = decodeURIComponent(location.pathname.split("/")[2]);
+  const location = useLocation(); // Obtiene la ubicación actual
+  const nameGame = decodeURIComponent(location.pathname.split("/")[2]); // Obtiene el nombre del juego desde la URL
 
-  const [relatedGames, setRelatedGames] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  // const [searchFilteredGames, setSearchFilteredGames] = useState([]);
+  const [relatedGames, setRelatedGames] = useState([]); // Define el useState relatedGames
+  const [isLoading, setIsLoading] = useState(false); // Define el useState isLoading
 
-  let toastDisplayed = false;
+  let toastDisplayed = false; // Variable para controlar la visualización del toast
 
+  // Define un useEffect
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Hace scroll hasta arriba de la página
   }, []);
 
+  // Define una función asíncrona para obtener los juegos relacionados
   const fetchGames = async () => {
-    setIsLoading(true);
+    setIsLoading(true); // Cambia el estado de isLoading a true
     try {
-      const promises = [];
-      promises.push(getListGames(nameGame));
-      const response = await Promise.all(promises);
+      const promises = []; // Define un array de promesas
+      promises.push(getListGames(nameGame)); // Añade una promesa al array de promesas
+      const response = await Promise.all(promises); // Espera a que todas las promesas se resuelvan
 
+      // Si la respuesta está vacía, devuelve error o contiene un error de límite de peticiones
       if (
         response[0] &&
         !response[0].ok &&
-        response[0] &&
         response[0].error &&
         response[0].error.includes("You are being temporarily blocked due to rate limiting")
       ) {
+        // Si no se ha mostrado el toast
         if (!toastDisplayed) {
+          // Muestra un toast con un mensaje de error
           toast.error(<div className="text-center">You have made too many requests. Please try again later.</div>);
-          toastDisplayed = true;
+          toastDisplayed = true; // Cambia el estado de toastDisplayed a true
         }
       }
 
-      const data = [];
+      const data = []; // Define un array de datos
+      // Para cada respuesta
       response.forEach((res) => {
-        data.push(res);
+        data.push(res); // Añade la respuesta al array de datos
       });
 
       let matchingGames = [];
 
+      // Si existen datos
       if (data && data[0]) {
+        // Filtra los juegos que coincidan con el nombre del juego que empiecen con lo que ha escrito el usuario
         matchingGames = data[0].filter((game) => game.external.toLowerCase().startsWith(nameGame.toLowerCase()));
       }
 
-      setRelatedGames(matchingGames);
-
-      console.log(matchingGames);
-      // setSearchFilteredGames(data);
+      setRelatedGames(matchingGames); // Establece los juegos relacionados
     } catch (error) {
+      // Si no se ha mostrado el toast
       if (!toastDisplayed) {
+        // Muestra un toast con un mensaje de error
         toast.error("Ha ocurrido un error. Por favor, inténtalo de nuevo más tarde.");
-        toastDisplayed = true;
+        toastDisplayed = true; // Cambia el estado de toastDisplayed a true
       }
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Cambia el estado de isLoading a false
     }
   };
 
+  // Define un useEffect
   useEffect(() => {
-    fetchGames();
-  }, [nameGame]);
-
-  // const [showPanel, setShowPanel] = useState(false);
-
-  // const togglePanel = () => {
-  //   setShowPanel(!showPanel);
-  // };
-
-  // const panelRef = useRef(null);
-
-  // const handleClickOutside = (event) => {
-  //   if (panelRef.current && !panelRef.current.contains(event.target)) {
-  //     setShowPanel(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
-
-  // const handleFilter = () => {
-  //   const priceOrder = document.getElementById("price").value;
-
-  //   let sortedGames = [...searchFilteredGames];
-
-  //   if (priceOrder === "asc") {
-  //     sortedGames.sort((a, b) => a.price - b.price);
-  //   } else if (priceOrder === "desc") {
-  //     sortedGames.sort((a, b) => b.price - a.price);
-  //   }
-
-  //   setSearchFilteredGames(sortedGames);
-  // };
-
-  // const cleanFilter = () => {
-  //   // Lógica para limpiar los filtros
-  // };
+    fetchGames(); // Llama a la función fetchGames
+  }, [nameGame]); // Cada vez que cambia el nombre del juego introducido por el usuario
 
   return (
     <>
       <div className="container mt-5 pt-5">
+        {/* Decodificamos el nombre de la URL para que se muestre correctamente al usuario */}
         <h2 className="text-white my-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
 
-        {/* <div className="mb-4">
-          <button className="btn btn-secondary toggle-btn" onClick={togglePanel}>
-            <i className="fas fa-filter me-2"></i>Filter
-          </button>
-          <div ref={panelRef} className={`side-panel ${showPanel ? "show" : ""} bg-black text-white`}>
-            <div className="p-3">
-              <h5 className="mb-4">Filter Options</h5>
-              <div className="mb-3">
-                <label htmlFor="price" className="form-label">
-                  Price
-                </label>
-                <select className="form-select" id="price">
-                  <option selected>Any</option>
-                  <option value="asc">Low to High</option>
-                  <option value="desc">High to Low</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="genre" className="form-label">
-                  Genre
-                </label>
-                <select className="form-select" id="genre">
-                  <option selected>All Genres</option>
-                  <option>Action</option>
-                  <option>Adventure</option>
-                  <option>RPG</option>
-                </select>
-              </div>
-              <div className="text-center">
-                <button className="btn btn-secondary mb-3" onClick={cleanFilter}>
-                  Reset Filters
-                </button>
-                <button className="btn btn-primary" onClick={handleFilter}>
-                  Apply Filters
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
+        {/* Renderiza el componente SearchGameListCards pasando los juegos relacionados y el estado de carga */}
         <SearchGameListCards games={relatedGames} isLoading={isLoading} />
       </div>
+      {/* Renderiza el ToastContainer para las notificaciones */}
       <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />
     </>
   );

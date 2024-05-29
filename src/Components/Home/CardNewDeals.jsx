@@ -15,7 +15,7 @@ export default function CardNewDeals({ newDeals }) {
         // Mapea newDeals y para cada juego crea un enlace a la página del juego utilizando su gameID como clave
         <Link to={`/game/${game.gameID}`} className="text-decoration-none" key={game.gameID}>
           <div
-            className="card newDeals__card bg-black text-light rounded-0 mx-auto"
+            className="card cardNewDeals__card bg-black text-light rounded-0 mx-auto"
             style={{
               borderTop: index !== 0 ? "2px solid white" : "none",
             }}>
