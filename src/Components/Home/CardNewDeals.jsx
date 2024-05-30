@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function CardNewDeals({ newDeals }) {
   // Si newDeals no está definido o no es un array, muestra un mensaje de "Loading..."
   if (!newDeals[0] || !Array.isArray(newDeals[0])) {
-    return <div className="text-white">Loading...</div>;
+    return <div></div>;
   }
 
   return (

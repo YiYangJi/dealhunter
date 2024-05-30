@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function CardBestDeals({ bestDeals }) {
   // Si bestDeals no está definido o no es un array, muestra un mensaje de "Loading..."
   if (!bestDeals[0] || !Array.isArray(bestDeals[0])) {
-    return <div className="text-white">"Loading..."</div>;
+    return <div></div>;
   }
 
   return (
