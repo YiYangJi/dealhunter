@@ -4,7 +4,7 @@ import React from "react";
 import SearchGameCard from "./SearchGameCard"; // Importa el componente SearchGameCard
 import Loading from "../Loading/Loading"; // Importa el componente Loading
 
-// Define y exporta la función SearchGameListCards con los parámetros games e isLoading
+// Define y exporta el componente SearchGameListCards con los parámetros games e isLoading
 export default function SearchGameListCards({ games, isLoading }) {
   // Filtra los juegos únicos
   let uniqueGames =

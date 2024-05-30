@@ -16,7 +16,9 @@
   min-height: 450px;
 }
 
+/* ///////////////////////////////////// */
 /* Button pagination styles */
+/* ///////////////////////////////////// */
 .newDeals__button--pagination {
   display: inline-block;
   padding: 10px 20px;

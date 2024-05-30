@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Define y exporta la funcion Footer
+// Define y exporta el componente Footer
 export default function Footer() {
   return (
     <>

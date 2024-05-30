@@ -5,7 +5,7 @@ import { searchGame } from "../../Services/AsyncFunctions"; // Importa la funci�
 import "./HomeGameCard.css"; // Importa los estilos CSS para este componente
 import { Link } from "react-router-dom"; // Importa la función Link desde react-router-dom
 
-// Define y exporta la función GameCard pasandole game como parámetro
+// Define y exporta el componente GameCard pasandole game como parámetro
 export default function GameCard({ game }) {
   const [image, setImage] = useState(null); // Define un useState para la imagen del juego
 

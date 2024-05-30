@@ -5,7 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 // Importa el componente HomeGameCard
 import HomeGameCard from "./HomeGameCard";
 
-// Define y exporta la función CarouselDeals
+// Define y exporta el componente CarouselDeals
 export default function CarouselDeals({ uniqueGames }) {
   return (
     <Carousel

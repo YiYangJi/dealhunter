@@ -15,7 +15,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la función GameDetails
+// Define y exporta el componente GameDetails
 export default function GameDetails() {
   const { id } = useParams(); // Obtiene el id de la URL
 

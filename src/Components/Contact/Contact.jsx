@@ -13,7 +13,7 @@ import Col from "react-bootstrap/Col";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la función Contact
+// Define y exporta el componente Contact
 export default function Contact() {
   // Define los estados para la validación de los campos del formulario y los mensajes de error correspondientes
   const [emailValidation, setEmailValidation] = useState();

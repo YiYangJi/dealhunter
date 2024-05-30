@@ -18,7 +18,7 @@ import Loading from "../Loading/Loading"; // Importa el componente de carga
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la función Home
+// Define y exporta el componente Home
 export default function Home() {
   const [games, setGames] = useState([]); // Define el estado de los juegos
   const [uniqueGames, setUniqueGames] = useState([]); // Define el estado de los juegos únicos (filtro de juegos)

@@ -2,11 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Define y exporta la función CardBestDeals
+// Define y exporta el componente CardBestDeals
 export default function CardBestDeals({ bestDeals }) {
   // Si bestDeals no está definido o no es un array, muestra un mensaje de "Loading..."
   if (!bestDeals[0] || !Array.isArray(bestDeals[0])) {
-    return <div>Loading...</div>;
+    return <div className="text-white">"Loading..."</div>;
   }
 
   return (

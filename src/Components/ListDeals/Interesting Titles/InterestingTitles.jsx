@@ -15,7 +15,7 @@ import "../Filter.css"; // Importa el archivo css para los filtros
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la función InterestingTitles
+// Define y exporta el componente InterestingTitles
 export default function InterestingTitles() {
   const [interestingGames, setInterestingGames] = useState([]); // Define el useState InterestingGames
   const [uniqueInterestingGames, setUniqueInterestingGames] = useState([]); // Define el useState uniqueInterestingGames
@@ -50,7 +50,6 @@ export default function InterestingTitles() {
       if (
         response[0] &&
         !response[0].ok &&
-        response[0] &&
         response[0].error &&
         response[0].error.includes("You are being temporarily blocked due to rate limiting")
       ) {
@@ -99,8 +98,6 @@ export default function InterestingTitles() {
           : [];
 
       setFilteredInterestingGames(uniqueFilter); // Establece el valor de filteredInterestingGames a los juegos filtrados
-
-      console.log(filteredInterestingGames); // Muestra en consola los juegos filtrados
     }
   }, [interestingGames]); // Se ejecuta cada vez que cambia el valor de InterestingGames
 
@@ -388,10 +385,10 @@ export default function InterestingTitles() {
           {filteredInterestingGames && <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />}
         </div>
         <div className="d-flex justify-content-center mt-3">
-          <button class="interestingTitles__button--pagination me-5" onClick={handlePreviousPage}>
+          <button className="interestingTitles__button--pagination me-5" onClick={handlePreviousPage}>
             Previous
           </button>
-          <button class="interestingTitles__button--pagination" onClick={handleNextPage}>
+          <button className="interestingTitles__button--pagination" onClick={handleNextPage}>
             Next
           </button>
         </div>

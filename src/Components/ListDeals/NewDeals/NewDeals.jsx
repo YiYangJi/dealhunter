@@ -12,7 +12,7 @@ import "../Filter.css"; // Importa el archivo css para los filtros
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la función InterestingTitles
+// Define y exporta el componente InterestingTitles
 export default function InterestingTitles() {
   const [newDeals, setNewDeals] = useState([]); // Define useState de newDeals
   const [uniqueNewDeals, setUniqueNewDeals] = useState([]); // Define useState de uniqueNewDeals
@@ -382,10 +382,10 @@ export default function InterestingTitles() {
           {filteredNewDeals && <ListCards filteredGames={filteredNewDeals} setIsLoading={setIsLoading} />}
         </div>
         <div className="d-flex justify-content-center mt-3">
-          <button class="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
+          <button className="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
             Previous
           </button>
-          <button class="newDeals__button--pagination" onClick={handleNextPage}>
+          <button className="newDeals__button--pagination" onClick={handleNextPage}>
             Next
           </button>
         </div>

@@ -55,7 +55,7 @@ export async function getNewDeals() {
 
 //getAllListDeals() used in InterestingTitles
 export async function getAllListDeals(page) {
-  const urlFetch = listDeals + `?pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const urlFetch = listDeals + `?pageNumber=${page}&pageSize=25`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
@@ -63,7 +63,7 @@ export async function getAllListDeals(page) {
 
 //getAllBestDeals() used in BestDeals
 export async function getAllBestDeals(page) {
-  const urlFetch = bestDeals + `&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const urlFetch = bestDeals + `&pageNumber=${page}&pageSize=25`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
@@ -71,7 +71,7 @@ export async function getAllBestDeals(page) {
 
 //getAllNewDeals() used in NewDeals
 export async function getAllNewDeals(page) {
-  const urlFetch = newDeals + `&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+  const urlFetch = newDeals + `&pageNumber=${page}&pageSize=25`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
@@ -80,7 +80,7 @@ export async function getAllNewDeals(page) {
 //getAllListDealsFilter(price, time, aaa, steamworks, onSale, page) used in Filter
 export async function getAllListDealsFilter(price, time, aaa, steamworks, onSale, page) {
   const urlFetch =
-    listDeals + `?upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+    listDeals + `?upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=25`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
@@ -89,7 +89,7 @@ export async function getAllListDealsFilter(price, time, aaa, steamworks, onSale
 //getAllListDealsFilter(price, time, aaa, steamworks, onSale, page) used in Filter
 export async function getAllBestDealsFilter(price, time, aaa, steamworks, onSale, page) {
   const urlFetch =
-    bestDeals + `&upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+    bestDeals + `&upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=25`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;
@@ -98,7 +98,7 @@ export async function getAllBestDealsFilter(price, time, aaa, steamworks, onSale
 //getAllNewDealsFilter(price, time, aaa, steamworks, onSale, page) used in Filter
 export async function getAllNewDealsFilter(price, time, aaa, steamworks, onSale, page) {
   const urlFetch =
-    newDeals + `&upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=5`; // QUITAR PAGE SIZE CUANDO SEA FUNCIONAL O CONSIGAS LA PAGINACION
+    newDeals + `&upperPrice=${price}&maxAge=${time}&AAA=${aaa}&steamworks=${steamworks}&onSale=${onSale}&pageNumber=${page}&pageSize=25`;
   const response = await fetch(urlFetch);
   const json = await response.json();
   return json;

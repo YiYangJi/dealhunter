@@ -3,7 +3,7 @@ import React from "react";
 
 import "./Loading.css"; // Importa el archivo de estilos Loading.css
 
-// Define y exporta la función Loading
+// Define y exporta el componente Loading
 export default function Loading() {
   return (
     <div className="d-flex justify-content-center align-items-center h-100 vh-100">

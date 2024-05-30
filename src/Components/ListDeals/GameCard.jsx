@@ -5,7 +5,7 @@ import { searchGame } from "../../Services/AsyncFunctions"; // Importa las funci
 import "./GameCard.css"; // Importa el css de GameCard
 import { Link } from "react-router-dom"; // Importa la función Link de react-router-dom
 
-// Define y exporta la función GameCard con los parámetros game y setIsLoading
+// Define y exporta el componente GameCard con los parámetros game y setIsLoading
 export default function GameCard({ game, setIsLoading }) {
   const [infoGame, setInfoGame] = useState(null); // Define el useState de infoGame
 
@@ -102,7 +102,7 @@ export default function GameCard({ game, setIsLoading }) {
                     </div>
                   </div>
                   <div className="col-xl-5 col-lg-4 col-md-4 col-sm-4 col-12 text-end">
-                    <p className="card-text gameCard--salePrice fw-bold">~{game.salePrice}€</p>
+                    <p className="card-text gameCard__p--salePrice fw-bold">~{game.salePrice}€</p>
                     <p className="card-text text-secondary d-sm-block d-none">
                       Original Price: <span className="text-white">{game.normalPrice}€</span>
                     </p>

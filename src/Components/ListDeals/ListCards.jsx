@@ -3,7 +3,7 @@ import React from "react";
 
 import GameCard from "./GameCard"; // Importa el componente GameCard
 
-// Define y exporta la función ListCards que recibe los parámetros filteredGames y setIsLoading
+// Define y exporta el componente ListCards que recibe los parámetros filteredGames y setIsLoading
 export default function ListCards({ filteredGames, setIsLoading }) {
   return (
     // Si filteredGames existe, mapea cada juego

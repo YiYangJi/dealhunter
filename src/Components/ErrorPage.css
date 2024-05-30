@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.errorPage__error--404 {
+  font-size: 100px;
+}
+
+.errorPage__bg-error--overlay {
+  background-image: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .7)), url("/public/img/errorPage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+}

@@ -9,7 +9,7 @@ import SearchGameListCards from "./SearchGameListCards"; // Importa el component
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la función SearchGame
+// Define y exporta el componente SearchGame
 export default function SearchGame() {
   const location = useLocation(); // Obtiene la ubicación actual
   const nameGame = decodeURIComponent(location.pathname.split("/")[2]); // Obtiene el nombre del juego desde la URL

@@ -12,7 +12,7 @@ import "./SearchInput.css"; // Importa el archivo css de SearchInput.css
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la funcion SearchInput pasandole como parametro onClose
+// Define y exporta el componente SearchInput pasandole como parametro onClose
 export default function SearchInput({ onClose }) {
   const [nameGame, setNameGame] = useState(""); // UseState para el nombre del juego
 

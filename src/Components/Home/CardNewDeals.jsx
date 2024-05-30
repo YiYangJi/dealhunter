@@ -2,11 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Define y exporta la función CardNewDeals
+// Define y exporta el componente CardNewDeals
 export default function CardNewDeals({ newDeals }) {
   // Si newDeals no está definido o no es un array, muestra un mensaje de "Loading..."
   if (!newDeals[0] || !Array.isArray(newDeals[0])) {
-    return <div>Loading...</div>;
+    return <div className="text-white">Loading...</div>;
   }
 
   return (

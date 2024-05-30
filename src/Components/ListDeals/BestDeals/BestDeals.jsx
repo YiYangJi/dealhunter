@@ -15,7 +15,7 @@ import "../Filter.css"; // Importa el archivo css para los filtros
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Define y exporta la función BestDeals
+// Define y exporta el componente BestDeals
 export default function BestDeals() {
   const [bestDeals, setBestDeals] = useState([]); // Define el useState bestDeals
   const [uniqueBestDeals, setUniqueBestDeals] = useState([]); // Define el useState uniqueBestDeals
@@ -385,10 +385,10 @@ export default function BestDeals() {
           {filteredBestDeals && <ListCards filteredGames={filteredBestDeals} setIsLoading={setIsLoading} />}
         </div>
         <div className="d-flex justify-content-center mt-3">
-          <button class="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
+          <button className="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
             Previous
           </button>
-          <button class="newDeals__button--pagination" onClick={handleNextPage}>
+          <button className="newDeals__button--pagination" onClick={handleNextPage}>
             Next
           </button>
         </div>
