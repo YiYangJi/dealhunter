@@ -12,7 +12,7 @@ import Contact from "./Components/Contact/Contact"; // Importa el componente Con
 import InterestingTitles from "./Components/ListDeals/Interesting Titles/InterestingTitles"; // Importa el componente InterestingTitles
 import BestDeals from "./Components/ListDeals/BestDeals/BestDeals"; // Importa el componente BestDeals
 import NewDeals from "./Components/ListDeals/NewDeals/NewDeals"; // Importa el componente NewDeals
-import ErrorPage from "./Components/ErrorPage";
+import ErrorPage from "./Components/Error/ErrorPage"; // Importa el componente ErrorPage
 
 // Define la función App
 function App() {
