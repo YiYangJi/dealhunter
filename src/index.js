@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom"; // Importa BrowserRouter de re
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // Renderiza la aplicación
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/dealhunter">
     {/* Renderiza el componente App, el componente principal de la aplicación */}
     <App />
   </BrowserRouter>

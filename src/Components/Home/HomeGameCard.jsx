@@ -36,7 +36,7 @@ export default function GameCard({ game }) {
     fetchImage(); // Llama a la función fetchImage
   }, []);
 
-  const backupImage = "/logo_DealHunter-bg.png"; // Define una imagen de backup
+  const backupImage = "/dealhunter/img/logo_DealHunter-bg.png"; // Define una imagen de backup
 
   // Maneja el error al cargar la imagen: establece la imagen de respaldo
   const handleError = (e) => {
