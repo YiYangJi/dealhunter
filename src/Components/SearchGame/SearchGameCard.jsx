@@ -18,20 +18,20 @@ export default function SearchGameCard({ game }) {
     const fetchImage = async () => {
       const response = await getInfoGame(game.gameID); // Obtiene la información del juego por ID
 
-      // Verifica que si el servidor devolvió un error
-      if (!response.ok) {
-        setError(`Error loading resources. Please try again.`); // Establece un mensaje de error
-        return;
-      }
-
       let dataResult = [];
       dataResult.push(response); // Almacena la información del juego en el estado dataResult
 
       let titleResults = [];
 
-      // Si la información del juego y el título del juego existen
-      if (dataResult && dataResult[0] && dataResult[0].info && dataResult[0].info.title) {
-        titleResults = await searchGame(dataResult[0].info.title); // Busca el juego por título
+      try {
+        // Si la información del juego y el título del juego existen
+        if (dataResult && dataResult[0] && dataResult[0].info && dataResult[0].info.title) {
+          titleResults = await searchGame(dataResult[0].info.title); // Busca el juego por título
+        }
+      } catch (error) {
+        console.error(error);
+        setError("Error loading resources. Please try again."); // Establece un mensaje de error
+        return;
       }
 
       let gameResult = [];
