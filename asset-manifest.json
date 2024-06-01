@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dealhunter/static/css/main.4eb644f6.css",
-    "main.js": "/dealhunter/static/js/main.b93f6679.js",
+    "main.css": "/dealhunter/static/css/main.5a9aee5e.css",
+    "main.js": "/dealhunter/static/js/main.60614eeb.js",
     "static/media/contact.png": "/dealhunter/static/media/contact.e034afa009181743147d.png",
     "static/media/homePresentation.png": "/dealhunter/static/media/homePresentation.981441cd0e761431180a.png",
     "static/media/errorPage.png": "/dealhunter/static/media/errorPage.18bda81b7eb324e863c4.png",
@@ -14,11 +14,11 @@
     "static/media/revicons.ttf": "/dealhunter/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/dealhunter/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/dealhunter/index.html",
-    "main.4eb644f6.css.map": "/dealhunter/static/css/main.4eb644f6.css.map",
-    "main.b93f6679.js.map": "/dealhunter/static/js/main.b93f6679.js.map"
+    "main.5a9aee5e.css.map": "/dealhunter/static/css/main.5a9aee5e.css.map",
+    "main.60614eeb.js.map": "/dealhunter/static/js/main.60614eeb.js.map"
   },
   "entrypoints": [
-    "static/css/main.4eb644f6.css",
-    "static/js/main.b93f6679.js"
+    "static/css/main.5a9aee5e.css",
+    "static/js/main.60614eeb.js"
   ]
 }
