@@ -18,6 +18,15 @@ export default function GameCard({ game, setIsLoading }) {
 
       try {
         titleResults = await searchGame(game.title); // Llama a la función searchGame con el título del juego
+
+        let gameResult = [];
+
+        // Si titleResults.results[0] existe
+        if (titleResults.results[0]) {
+          gameResult.push(titleResults.results[0]); // Añade titleResults.results[0] a gameResult
+        }
+
+        setInfoGame(gameResult[0]); // Almacena la información del juego en infoGame
       } catch (error) {
         console.error("Error fetching data from RAWG API", error);
         setInfoGame(backupImage); // Cambia el estado de infoGame a backupImage
@@ -25,14 +34,6 @@ export default function GameCard({ game, setIsLoading }) {
         return; // Retorna
       }
 
-      let gameResult = [];
-
-      // Si titleResults.results[0] existe
-      if (titleResults.results[0]) {
-        gameResult.push(titleResults.results[0]); // Añade titleResults.results[0] a gameResult
-      }
-
-      setInfoGame(gameResult[0]); // Almacena la información del juego en infoGame
       setIsLoading(false); // Cambia el estado de isLoading a false
     };
 
@@ -67,7 +68,7 @@ export default function GameCard({ game, setIsLoading }) {
                     <h5 className="card-title fs-5">{game.title}</h5>
                     <p className="text-secondary m-0">
                       Release Date:{" "}
-                      <span className="text-white">{infoGame && infoGame.released ? infoGame.released : "Failed to load resource"}</span>
+                      <span className="text-white">{infoGame && infoGame.released ? infoGame.released : "Failed to load resources"}</span>
                     </p>
                     <p className="text-secondary m-0">
                       Genres:{" "}
