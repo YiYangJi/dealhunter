@@ -143,7 +143,7 @@ export async function getInfoGame(id) {
 //searchGame(name) used in Home, SearchGame, InterestingTitles, BestDeals, NewDeals
 export async function searchGame(name) {
   // const urlFetch = searchGames + `?key=${apiRAWGKey}&search=${name}&page_size=1`;
-  const response = await fetch(`http://142.93.160.137:11287/searchGame?name=${name}`);
+  const response = await fetch(`https://backend-server.dealhunterapp.com:11286/searchGame?name=${name}`);
   const json = await response.json();
   return json;
 }
@@ -151,7 +151,7 @@ export async function searchGame(name) {
 //searchGameInfo(id) used in GameDetails
 export async function searchGameInfo(id) {
   // const urlFetch = searchGames + `/${id}?key=${apiRAWGKey}`;
-  const response = await fetch(`http://142.93.160.137:11287/searchGameInfo?id=${id}`);
+  const response = await fetch(`https://backend-server.dealhunterapp.com:11286/searchGameInfo?id=${id}`);
   const json = await response.json();
   return json;
 }
