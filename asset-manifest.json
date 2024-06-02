@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/dealhunter/static/css/main.5a9aee5e.css",
-    "main.js": "/dealhunter/static/js/main.275c2215.js",
-    "static/media/contact.png": "/dealhunter/static/media/contact.e034afa009181743147d.png",
-    "static/media/homePresentation.png": "/dealhunter/static/media/homePresentation.981441cd0e761431180a.png",
-    "static/media/errorPage.png": "/dealhunter/static/media/errorPage.18bda81b7eb324e863c4.png",
-    "static/media/interestingTitles.png": "/dealhunter/static/media/interestingTitles.cab6b9a17d8b36b43053.png",
-    "static/media/newDeals.png": "/dealhunter/static/media/newDeals.bc596b39e126433e7b8a.png",
-    "static/media/bestDeals.png": "/dealhunter/static/media/bestDeals.8496960814c78c0ad70d.png",
-    "static/media/homePresentation2.png": "/dealhunter/static/media/homePresentation2.d3cdaaf76556e3bfe692.png",
-    "static/media/about.png": "/dealhunter/static/media/about.455df107cd5f0a61c182.png",
-    "static/media/revicons.eot": "/dealhunter/static/media/revicons.a77de540a38981833f9e.eot",
-    "static/media/revicons.ttf": "/dealhunter/static/media/revicons.57fd05d4ae650374c8de.ttf",
-    "static/media/revicons.woff": "/dealhunter/static/media/revicons.e8746a624ed098489406.woff",
-    "index.html": "/dealhunter/index.html",
-    "main.5a9aee5e.css.map": "/dealhunter/static/css/main.5a9aee5e.css.map",
-    "main.275c2215.js.map": "/dealhunter/static/js/main.275c2215.js.map"
+    "main.css": "/static/css/main.d168ce73.css",
+    "main.js": "/static/js/main.275c2215.js",
+    "static/media/contact.png": "/static/media/contact.e034afa009181743147d.png",
+    "static/media/homePresentation.png": "/static/media/homePresentation.981441cd0e761431180a.png",
+    "static/media/errorPage.png": "/static/media/errorPage.18bda81b7eb324e863c4.png",
+    "static/media/interestingTitles.png": "/static/media/interestingTitles.cab6b9a17d8b36b43053.png",
+    "static/media/newDeals.png": "/static/media/newDeals.bc596b39e126433e7b8a.png",
+    "static/media/bestDeals.png": "/static/media/bestDeals.8496960814c78c0ad70d.png",
+    "static/media/homePresentation2.png": "/static/media/homePresentation2.d3cdaaf76556e3bfe692.png",
+    "static/media/about.png": "/static/media/about.455df107cd5f0a61c182.png",
+    "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/index.html",
+    "main.d168ce73.css.map": "/static/css/main.d168ce73.css.map",
+    "main.275c2215.js.map": "/static/js/main.275c2215.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a9aee5e.css",
+    "static/css/main.d168ce73.css",
     "static/js/main.275c2215.js"
   ]
 }
