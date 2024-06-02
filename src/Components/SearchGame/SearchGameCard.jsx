@@ -50,7 +50,7 @@ export default function SearchGameCard({ game }) {
     fetchImage(); // Ejectua la función fetchImage
   }, []);
 
-  const backupImage = "/dealhunter/img/logo_DealHunter-bg.png"; // Establece una imagen de respaldo
+  const backupImage = "/img/logo_DealHunter-bg.png"; // Establece una imagen de respaldo
 
   // Define una función para manejar la imagen en caso de que de error
   const handleError = (e) => {

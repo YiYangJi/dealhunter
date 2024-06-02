@@ -1,7 +1,7 @@
 {
   "name": "deal-hunter",
   "version": "0.1.0",
-  "homepage": "https://yiyangji.github.io/dealhunter/",
+  "homepage": "https://dealhunterapp.com",
   "proxy": "https://api.isthereanydeal.com",
   "private": true,
   "dependencies": {

@@ -25,7 +25,7 @@ export default function Header() {
         <Container fluid className="container">
           <Navbar.Brand>
             <Link to="/">
-              <img src="/dealhunter/img/logo_DealHunter-nobg.png" alt="" height="80" />
+              <img src="/img/logo_DealHunter-nobg.png" alt="" height="80" />
             </Link>
           </Navbar.Brand>
           {/* Cuando se hace click en la hamburguesa del menu, ejecuta la funcion para mostrar el menu offcanvas */}

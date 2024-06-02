@@ -30,7 +30,7 @@ export default function About() {
             </p>
           </div>
           <div className="col-lg-5 col-md-5">
-            <img src="/dealhunter/img/aboutPicture.png" alt="" className="img-fluid about__img1--rotate d-md-block" />
+            <img src="/img/aboutPicture.png" alt="" className="img-fluid about__img1--rotate d-md-block" />
           </div>
         </div>
         <div className="row flex-row-reverse justify-content-center align-items-center">
@@ -42,7 +42,7 @@ export default function About() {
             </p>
           </div>
           <div className="col-lg-5 col-md-6">
-            <img src="/dealhunter/img/aboutPicture2.png" alt="" className="img-fluid about__img2--rotate d-md-block" />
+            <img src="/img/aboutPicture2.png" alt="" className="img-fluid about__img2--rotate d-md-block" />
           </div>
         </div>
 
