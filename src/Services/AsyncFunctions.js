@@ -136,22 +136,22 @@ export async function getInfoGame(id) {
 //////////////////////////////////////////////////////////////////////////////////
 // Second API used to get game information and images
 //////////////////////////////////////////////////////////////////////////////////
-const apiRAWGKey = process.env.REACT_APP_RAWG_API_KEY;
+// const apiRAWGKey = process.env.REACT_APP_RAWG_API_KEY;
 
-const searchGames = `https://api.rawg.io/api/games`;
+// const searchGames = `https://api.rawg.io/api/games`;
 
 //searchGame(name) used in Home, SearchGame, InterestingTitles, BestDeals, NewDeals
 export async function searchGame(name) {
-  const urlFetch = searchGames + `?key=${apiRAWGKey}&search=${name}&page_size=1`;
-  const response = await fetch(urlFetch);
+  // const urlFetch = searchGames + `?key=${apiRAWGKey}&search=${name}&page_size=1`;
+  const response = await fetch(`http://142.93.160.137:11287/searchGame?name=${name}`);
   const json = await response.json();
   return json;
 }
 
 //searchGameInfo(id) used in GameDetails
 export async function searchGameInfo(id) {
-  const urlFetch = searchGames + `/${id}?key=${apiRAWGKey}`;
-  const response = await fetch(urlFetch);
+  // const urlFetch = searchGames + `/${id}?key=${apiRAWGKey}`;
+  const response = await fetch(`http://142.93.160.137:11287/searchGameInfo?id=${id}`);
   const json = await response.json();
   return json;
 }
