@@ -382,7 +382,13 @@ export default function InterestingTitles() {
           {/* Si isLoading es true, ejecuta el componente Loading */}
           {isLoading && <Loading />}
           {/* Si filteredInterestingGames existe, ejecuta el componente ListCards con los juegos filtrados, pasándole setIsLoading como prop */}
-          {filteredInterestingGames && <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />}
+          {filteredInterestingGames && filteredInterestingGames.length > 0 ? (
+            <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />
+          ) : (
+            <div className="text-center mt-5">
+              <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
+            </div>
+          )}
         </div>
         <div className="d-flex justify-content-center mt-3">
           <button className="interestingTitles__button--pagination me-5" onClick={handlePreviousPage}>

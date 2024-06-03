@@ -83,10 +83,19 @@ export default function SearchGame() {
     <>
       <div className="container mt-5 pt-5">
         {/* Decodificamos el nombre de la URL para que se muestre correctamente al usuario */}
-        <h2 className="text-white my-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
 
         {/* Renderiza el componente SearchGameListCards pasando los juegos relacionados y el estado de carga */}
-        <SearchGameListCards games={relatedGames} isLoading={isLoading} />
+        {relatedGames.length > 0 ? (
+          <>
+            <h2 className="text-white my-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
+            <SearchGameListCards games={relatedGames} isLoading={isLoading} />
+          </>
+        ) : (
+          <>
+            <h2 className="text-white my-4">No results found for "{decodeURIComponent(nameGame)}"</h2>
+            <p className="text-white fs-4 mb-4">Please try a different keyword</p>
+          </>
+        )}
       </div>
       {/* Renderiza el ToastContainer para las notificaciones */}
       <ToastContainer position="bottom-center" autoClose={2000} closeOnClick pauseOnFocusLoss={false} draggable theme="dark" />

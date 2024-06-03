@@ -382,7 +382,13 @@ export default function BestDeals() {
           {/* Si isLoading es true, ejecuta el componente de carga */}
           {isLoading && <Loading />}
           {/* Si filteredBestDeals existe, ejecuta el componente ListCards con los juegos filtrados pasadole setIsLoading como prop */}
-          {filteredBestDeals && <ListCards filteredGames={filteredBestDeals} setIsLoading={setIsLoading} />}
+          {filteredBestDeals && filteredBestDeals.length > 0 ? (
+            <ListCards filteredGames={filteredBestDeals} setIsLoading={setIsLoading} />
+          ) : (
+            <div className="text-center mt-5">
+              <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
+            </div>
+          )}
         </div>
         <div className="d-flex justify-content-center mt-3">
           <button className="newDeals__button--pagination me-5" onClick={handlePreviousPage}>
