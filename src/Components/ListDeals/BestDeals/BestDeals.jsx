@@ -3,10 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "./BestDeals.css"; // Importa el archivo css BestDeals.css
 import { getAllBestDeals, getAllBestDealsFilter } from "../../../Services/AsyncFunctions"; // Importa las funciones asíncronas
-
-// Importa las librerias de react-bootstrap
-import { Tooltip, OverlayTrigger } from "react-bootstrap";
-
+import { Tooltip, OverlayTrigger } from "react-bootstrap"; // Importa las librerias de react-bootstrap
 import ListCards from "../ListCards"; // Importa el componente ListCards
 import Loading from "../../Loading/Loading"; // Importa el componente Loading
 import "../Filter.css"; // Importa el archivo css para los filtros
@@ -41,6 +38,7 @@ export default function BestDeals() {
 
     // Define una función llamada fetchListDeals
     const fetchListDeals = async () => {
+      setIsLoading(true); // Establece el valor de isLoading a true
       const promises = []; // Crear un array de promises
       promises.push(getAllBestDeals(page)); // Añadir a promises la promise de getAllBestDeals con el valor de page
       const response = await Promise.all(promises); // Esperar a que se resuelvan todas las promises
@@ -142,6 +140,7 @@ export default function BestDeals() {
       });
 
       setBestDeals(data); // Establece el valor de bestDeals a los juegos filtrados
+      setIsLoading(false); // Establece el valor de isLoading a false
     };
 
     // Si hay juegos únicos, si hay un radio seleccionado o si alguno de los checkboxes está seleccionado
@@ -379,20 +378,19 @@ export default function BestDeals() {
           </div>
         </div>
         <div className="col-xl-9 col-lg-9 col-md-12 col-12">
-          {/* Si isLoading es true, ejecuta el componente de carga */}
-          {isLoading && <Loading />}
-          {/* Si filteredBestDeals existe, ejecuta el componente ListCards con los juegos filtrados pasadole setIsLoading como prop */}
-          {filteredBestDeals && filteredBestDeals.length > 0 ? (
-            <ListCards filteredGames={filteredBestDeals} setIsLoading={setIsLoading} />
+          {/* Si isLoading es true, ejecuta el componente Loading */}
+          {isLoading ? (
+            <Loading />
+          ) : // Si filteredInterestingGames existe y tiene más de 0 elementos
+          filteredBestDeals && filteredBestDeals.length > 0 ? (
+            // Ejecuta el componente ListCards con los juegos filtrados y el valor de isLoading
+            <ListCards filteredGames={filteredBestDeals} isLoading={isLoading} />
           ) : (
             <>
-              {Loading ? (
-                <Loading />
-              ) : (
-                <div className="text-center mt-5">
-                  <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
-                </div>
-              )}
+              {/* Sino, muestra un mensaje indicando al usuario que no se han encontrado resultados */}
+              <div className="text-center mt-5">
+                <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
+              </div>
             </>
           )}
         </div>

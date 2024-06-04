@@ -6,14 +6,13 @@ import "./GameCard.css"; // Importa el css de GameCard
 import { Link } from "react-router-dom"; // Importa la función Link de react-router-dom
 
 // Define y exporta el componente GameCard con los parámetros game y setIsLoading
-export default function GameCard({ game, setIsLoading }) {
+export default function GameCard({ game }) {
   const [infoGame, setInfoGame] = useState(null); // Define el useState de infoGame
 
   // Define la función useEffect
   useEffect(() => {
     // Define una función asincrona llamada fetchImage
     const fetchImage = async () => {
-      setIsLoading(true); // Cambia el estado de isLoading a true
       let titleResults;
 
       try {
@@ -30,11 +29,8 @@ export default function GameCard({ game, setIsLoading }) {
       } catch (error) {
         console.error("Error fetching data from RAWG API", error);
         setInfoGame(backupImage); // Cambia el estado de infoGame a backupImage
-        setIsLoading(false); // Cambia el estado de isLoading a false
         return; // Retorna
       }
-
-      setIsLoading(false); // Cambia el estado de isLoading a false
     };
 
     fetchImage(); // Ejecuta la función fetchImage

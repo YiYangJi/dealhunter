@@ -3,10 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "./InterestingTitles.css"; // Importa el archivo css InterestingTitles
 import { getAllListDeals, getAllListDealsFilter } from "../../../Services/AsyncFunctions"; // Importa las funciones getAllListDeals y getAllListDealsFilter
-
-// Importa las librerías de react-bootstrap
-import { Tooltip, OverlayTrigger } from "react-bootstrap";
-
+import { Tooltip, OverlayTrigger } from "react-bootstrap"; // Importa las librerías de react-bootstrap
 import ListCards from "../ListCards"; // Importa el componente ListCards
 import Loading from "../../Loading/Loading"; // Importa el componente Loading
 import "../Filter.css"; // Importa el archivo css para los filtros
@@ -33,7 +30,6 @@ export default function InterestingTitles() {
   });
 
   const [isLoading, setIsLoading] = useState(false); // Define el useState isLoading
-
   const toastDisplayedRef = useRef(false); // Define el useRef toastDisplayedRef
 
   // Define el useEffect para hacer la petición de los juegos interesantes
@@ -42,6 +38,7 @@ export default function InterestingTitles() {
 
     // Define una función llamada fetchListDeals
     const fetchListDeals = async () => {
+      setIsLoading(true); // Establece el valor de isLoading a true
       const promises = []; // Define un array de promises
       promises.push(getAllListDeals(page)); // Añade a promises la promise de getAllListDeals con el valor de page
       const response = await Promise.all(promises); // Espera a que se resuelvan todas las promises
@@ -142,6 +139,7 @@ export default function InterestingTitles() {
       });
 
       setInterestingGames(data); // Establece el valor de InterestingGames a los juegos filtrados
+      setIsLoading(false); // Establece el valor de isLoading a true
     };
 
     // Si hay juegos únicos, si hay un radio seleccionado o si alguno de los checkboxes está seleccionado
@@ -380,19 +378,18 @@ export default function InterestingTitles() {
         </div>
         <div className="col-xl-9 col-lg-9 col-md-12 col-12">
           {/* Si isLoading es true, ejecuta el componente Loading */}
-          {isLoading && <Loading />}
-          {/* Si filteredInterestingGames existe, ejecuta el componente ListCards con los juegos filtrados, pasándole setIsLoading como prop */}
-          {filteredInterestingGames && filteredInterestingGames.length > 0 ? (
-            <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />
+          {isLoading ? (
+            <Loading />
+          ) : // Si filteredInterestingGames existe y tiene más de 0 elementos
+          filteredInterestingGames && filteredInterestingGames.length > 0 ? (
+            // Ejecuta el componente ListCards con los juegos filtrados y el valor de isLoading
+            <ListCards filteredGames={filteredInterestingGames} isLoading={isLoading} />
           ) : (
             <>
-              {isLoading ? (
-                <Loading />
-              ) : (
-                <div className="text-center mt-5">
-                  <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
-                </div>
-              )}
+              {/* Sino, muestra un mensaje indicando al usuario que no se han encontrado resultados */}
+              <div className="text-center mt-5">
+                <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
+              </div>
             </>
           )}
         </div>
