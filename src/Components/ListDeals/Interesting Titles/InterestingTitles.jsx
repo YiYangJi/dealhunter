@@ -385,9 +385,15 @@ export default function InterestingTitles() {
           {filteredInterestingGames && filteredInterestingGames.length > 0 ? (
             <ListCards filteredGames={filteredInterestingGames} setIsLoading={setIsLoading} />
           ) : (
-            <div className="text-center mt-5">
-              <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
-            </div>
+            <>
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <div className="text-center mt-5">
+                  <h2 className="text-white">Sorry, no games found matching your filters. Please try adjusting your search criteria.</h2>
+                </div>
+              )}
+            </>
           )}
         </div>
         <div className="d-flex justify-content-center mt-3">

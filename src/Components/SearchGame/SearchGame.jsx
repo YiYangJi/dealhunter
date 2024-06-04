@@ -8,6 +8,7 @@ import SearchGameListCards from "./SearchGameListCards"; // Importa el component
 // Importa las librerias de React
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../Loading/Loading";
 
 // Define y exporta el componente SearchGame
 export default function SearchGame() {
@@ -92,8 +93,14 @@ export default function SearchGame() {
           </>
         ) : (
           <>
-            <h2 className="text-white my-4">No results found for "{decodeURIComponent(nameGame)}"</h2>
-            <p className="text-white fs-4 mb-4">Please try a different keyword</p>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <>
+                <h2 className="text-white my-4">No results found for "{decodeURIComponent(nameGame)}"</h2>
+                <p className="text-white fs-4 mb-4">Please try a different keyword</p>
+              </>
+            )}
           </>
         )}
       </div>
