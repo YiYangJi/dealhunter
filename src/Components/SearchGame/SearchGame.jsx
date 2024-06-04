@@ -83,24 +83,19 @@ export default function SearchGame() {
   return (
     <>
       <div className="container mt-5 pt-5">
-        {/* Decodificamos el nombre de la URL para que se muestre correctamente al usuario */}
-
-        {/* Renderiza el componente SearchGameListCards pasando los juegos relacionados y el estado de carga */}
-        {relatedGames.length > 0 ? (
+        {isLoading ? (
+          <Loading />
+        ) : /* Renderiza el componente SearchGameListCards pasando los juegos relacionados y el estado de carga */
+        /* Decodificamos el nombre de la URL para que se muestre correctamente al usuario */
+        relatedGames && relatedGames.length > 0 ? (
           <>
             <h2 className="text-white my-4">Search results for "{decodeURIComponent(nameGame)}"</h2>
             <SearchGameListCards games={relatedGames} isLoading={isLoading} />
           </>
         ) : (
           <>
-            {isLoading ? (
-              <Loading />
-            ) : (
-              <>
-                <h2 className="text-white my-4">No results found for "{decodeURIComponent(nameGame)}"</h2>
-                <p className="text-white fs-4 mb-4">Please try a different keyword</p>
-              </>
-            )}
+            <h2 className="text-white my-4">No results found for "{decodeURIComponent(nameGame)}"</h2>
+            <p className="text-white fs-4 mb-4">Please try a different keyword</p>
           </>
         )}
       </div>
