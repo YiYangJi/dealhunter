@@ -46,7 +46,7 @@ export default function GameDetails() {
           setMoreGameData(moreData); // Establece los datos detallados del juego en moreGameData
         }
       } catch (error) {
-        console.error("Error fetching meal details:", error); // Muestra un mensaje de error en la consola
+        console.error("Error fetching game details:", error); // Muestra un mensaje de error en la consola
         setError("Error loading resources. Please try again."); // Establece un mensaje de error
       }
     };
